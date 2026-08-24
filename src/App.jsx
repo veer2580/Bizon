@@ -3,7 +3,6 @@ import { BrowserRouter, Navigate, Routes, Route, useLocation } from "react-route
 import { DataProvider } from "./context/DataContext";
 import { ThemeProvider } from "./context/ThemeContext";
 
-import Landing      from "./pages/Landing";
 import UploadPage   from "./pages/UploadPage";
 import Dashboard    from "./pages/Dashboard";
 import Chat         from "./pages/Chat";
@@ -78,8 +77,8 @@ function App() {
       <DataProvider>
         <BrowserRouter>
           <Routes>
-          <Route path="/"              element={<Landing />} />
-          <Route path="/landing"       element={<Landing />}      />
+          <Route path="/"              element={<Navigate to="/dashboard" replace />} />
+          <Route path="/landing"       element={<Navigate to="/dashboard" replace />} />
           <Route path="/home"          element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/login"         element={<Login />}        />
           <Route path="/signup"        element={<Signup />}       />

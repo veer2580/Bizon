@@ -261,6 +261,38 @@ def _advance_onboarding(db: sqlite3.Connection, user_id: str, current_step: int,
     )
 
 
+def _complete_signup_workspace(db: sqlite3.Connection, user_id: str, company_name: str) -> None:
+    now = _utc_now()
+    db.execute(
+        """
+        INSERT INTO workspace_onboarding_company (
+            user_id, company_name, industry, company_size, website, company_description,
+            logo_data_url, default_currency, time_zone, accuracy_confirmed, skipped,
+            step, created_at, updated_at
+        )
+        VALUES (?, ?, 'Not provided', 'Not provided', '', '', '', 'INR', 'Asia/Kolkata', 1, 0, 1, ?, ?)
+        ON CONFLICT(user_id) DO UPDATE SET
+            company_name=excluded.company_name,
+            updated_at=excluded.updated_at
+        """,
+        (user_id, company_name, now, now),
+    )
+    db.execute(
+        """
+        INSERT INTO workspace_onboarding_state (
+            user_id, current_step, data_source, completed, completed_at, created_at, updated_at
+        ) VALUES (?, 5, 'signup', 1, ?, ?, ?)
+        ON CONFLICT(user_id) DO UPDATE SET
+            current_step=5,
+            data_source=COALESCE(workspace_onboarding_state.data_source, excluded.data_source),
+            completed=1,
+            completed_at=COALESCE(workspace_onboarding_state.completed_at, excluded.completed_at),
+            updated_at=excluded.updated_at
+        """,
+        (user_id, now, now, now),
+    )
+
+
 def get_onboarding_status(user_id: str) -> dict[str, Any]:
     user_id = _clean(user_id)
     if not user_id.startswith("usr_"):
@@ -357,6 +389,7 @@ def create_account(payload: dict[str, Any]) -> dict[str, Any]:
                     existing["user_id"],
                 ),
             )
+            _complete_signup_workspace(db, existing["user_id"], company_name)
             db.commit()
             row = db.execute("SELECT * FROM workspace_accounts WHERE user_id = ?", (existing["user_id"],)).fetchone()
             return {**_safe_account(row), "onboarding": get_onboarding_status(existing["user_id"])}
@@ -386,6 +419,7 @@ def create_account(payload: dict[str, Any]) -> dict[str, Any]:
                     now,
                 ),
             )
+            _complete_signup_workspace(db, user_id, company_name)
             db.commit()
         except sqlite3.IntegrityError as exc:
             raise AccountExistsError("An account already exists with this work email.") from exc

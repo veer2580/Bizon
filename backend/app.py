@@ -566,27 +566,9 @@ def _generate_auto_stitch_website(
         result = plan_dashboard(prompt, quick_analysis, use_stitch=True)
         stitch = result.get("stitch") or {}
         plan = result.get("plan") or {}
-        if stitch.get("status") == "generated":
-            customized = {**stitch, "prompt": prompt, "plan": plan}
-        else:
-            native_spec = {
-                "title": plan.get("title") or f"{quick_analysis.get('fileName', 'Business')} Dashboard",
-                "theme": plan.get("theme") or "light",
-                "layout": plan.get("layout") or "grid",
-                "kpis": quick_analysis.get("kpis", [])[:8],
-                "charts": quick_analysis.get("charts", [])[:8],
-                "insights": (quick_analysis.get("insights") or quick_analysis.get("insightObjects") or [])[:8],
-                "summary": quick_analysis.get("summary") or "Interactive dashboard generated from this protected analysis.",
-            }
-            customized = {
-                "configured": stitch.get("configured", False),
-                "status": "generated",
-                "provider": "native-dashboard",
-                "fallbackReason": stitch.get("error") or stitch.get("status") or "Stitch bridge unavailable",
-                "html": json.dumps(native_spec, ensure_ascii=False),
-                "prompt": prompt,
-                "plan": plan,
-            }
+        if stitch.get("status") != "generated":
+            raise RuntimeError(stitch.get("error") or "Stitch could not generate the live website.")
+        customized = {**stitch, "prompt": prompt, "plan": plan}
         protected_analysis = {**quick_analysis, "studioCustomization": customized}
         share = create_protected_share(
             session_id,
@@ -762,31 +744,6 @@ async def app(scope, receive, send):
         if method == "POST" and path == "/api/auth/signup":
             body = await _read_body(receive)
             payload = json.loads(body.decode("utf-8") or "{}")
-            if AUTH_DISABLED:
-                secure_cookie = scope.get("scheme") == "https" or headers.get("x-forwarded-proto") == "https"
-                user = _bypass_profile(workspace_user_id, payload.get("workEmail") or payload.get("email"))
-                supplied_name = " ".join(
-                    part for part in (
-                        str(payload.get("firstName") or "").strip(),
-                        str(payload.get("lastName") or "").strip(),
-                    ) if part
-                )
-                if supplied_name:
-                    user = {**user, "displayName": supplied_name, "firstName": str(payload.get("firstName") or "").strip(), "lastName": str(payload.get("lastName") or "").strip()}
-                await _send_json(
-                    send,
-                    201,
-                    {
-                        "ok": True,
-                        "requiresOtp": False,
-                        "email": user["email"],
-                        "user": user,
-                        "workspaceUserId": workspace_user_id,
-                        "nextStep": "/dashboard",
-                    },
-                    [(b"set-cookie", session_cookie(workspace_cookie_value(workspace_user_id), secure_cookie).encode("utf-8"))],
-                )
-                return
             try:
                 user = create_account(payload)
             except AccountExistsError as error:
@@ -848,14 +805,11 @@ async def app(scope, receive, send):
             body = await _read_body(receive)
             payload = json.loads(body.decode("utf-8") or "{}")
             secure_cookie = scope.get("scheme") == "https" or headers.get("x-forwarded-proto") == "https"
-            if AUTH_DISABLED:
-                user = _bypass_profile(workspace_user_id, payload.get("email") or payload.get("workEmail"))
-            else:
-                try:
-                    user = authenticate_account(payload.get("email") or payload.get("workEmail"), payload.get("password"))
-                except InvalidCredentialsError as error:
-                    await _send_json(send, 401, {"ok": False, "error": str(error)})
-                    return
+            try:
+                user = authenticate_account(payload.get("email") or payload.get("workEmail"), payload.get("password"))
+            except InvalidCredentialsError as error:
+                await _send_json(send, 401, {"ok": False, "error": str(error)})
+                return
             await _send_json(
                 send,
                 200,

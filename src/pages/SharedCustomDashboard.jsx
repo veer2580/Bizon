@@ -27,6 +27,11 @@ function parseDashboardPlan(customization) {
   }
 }
 
+function isStitchGenerated(customization) {
+  if (!customization || customization.provider === 'native-dashboard') return false;
+  return customization.status === 'generated' && Boolean(customization.html || customization.htmlUrl || customization.imageUrl || customization.projectId);
+}
+
 function numericValue(value) {
   const number = Number(String(value ?? '').replace(/[^0-9.-]/g, ''));
   return Number.isFinite(number) ? number : 0;
@@ -173,26 +178,36 @@ export default function SharedCustomDashboard() {
           <div className="protected-share-icon">{loading ? <Loader2 size={26} className="spin" /> : <LockKeyhole size={26} />}</div>
           <span className="section-kicker">Password-protected live dashboard</span>
           <h1>{loading ? 'Checking secure link...' : metadata?.fileName || 'Customized dashboard'}</h1>
-          <p>Enter the password shared by the dashboard owner. Five incorrect attempts lock this link.</p>
-          {!loading ? (
-            <form onSubmit={unlock}>
-              <label>
-                <span>Dashboard password</span>
-                <div>
-                  <input type={showPassword ? 'text' : 'password'} value={password} onChange={event => setPassword(event.target.value)} autoComplete="current-password" autoFocus placeholder="Enter password" />
-                  <button type="button" onClick={() => setShowPassword(value => !value)} aria-label={showPassword ? 'Hide password' : 'Show password'}>{showPassword ? <EyeOff size={17} /> : <Eye size={17} />}</button>
-                </div>
-              </label>
-              {error && <div className="secure-dialog-error" role="alert">{error}</div>}
-              <button className="secure-dialog-submit" type="submit" disabled={!password || unlocking}>{unlocking ? <Loader2 size={17} className="spin" /> : <ShieldCheck size={17} />}{unlocking ? 'Unlocking...' : 'Unlock dashboard'}</button>
-            </form>
-          ) : null}
+          <p>Enter the password shared by the dashboard owner. Only Stitch-generated dashboards can open from this live link.</p>
+          <form onSubmit={unlock}>
+            <label>
+              <span>Dashboard password</span>
+              <div>
+                <input type={showPassword ? 'text' : 'password'} value={password} onChange={event => setPassword(event.target.value)} autoComplete="current-password" autoFocus={!loading} placeholder="Enter password" disabled={loading || unlocking} />
+                <button type="button" onClick={() => setShowPassword(value => !value)} aria-label={showPassword ? 'Hide password' : 'Show password'} disabled={loading || unlocking}>{showPassword ? <EyeOff size={17} /> : <Eye size={17} />}</button>
+              </div>
+            </label>
+            {error && <div className="secure-dialog-error" role="alert">{error}</div>}
+            <button className="secure-dialog-submit" type="submit" disabled={loading || !password || unlocking}>{unlocking ? <Loader2 size={17} className="spin" /> : <ShieldCheck size={17} />}{loading ? 'Checking link...' : unlocking ? 'Unlocking...' : 'Unlock dashboard'}</button>
+          </form>
         </section>
       </main>
     );
   }
 
   const customization = analysis.studioCustomization;
+  if (!isStitchGenerated(customization)) {
+    return (
+      <main className="custom-shared-dashboard">
+        <header><div><ShieldCheck size={16} /><strong>Protected Stitch Dashboard</strong></div><span>{analysis.fileName}</span></header>
+        <section className="stitch-empty-stage shared-stitch-required">
+          <LockKeyhole />
+          <h1>Stitch dashboard is unavailable</h1>
+          <p>This live link can only show dashboards generated through Stitch. Ask the owner to regenerate the live website from the dashboard.</p>
+        </section>
+      </main>
+    );
+  }
   const plan = parseDashboardPlan(customization);
   const validHtml = /^<!doctype|^<html|^<body|^<div/i.test(String(customization?.html || '').trim());
   const overviewBullets = buildDataOverview(analysis);
@@ -203,14 +218,14 @@ export default function SharedCustomDashboard() {
         <div><FileText size={20} /><span><small>DATA OVERVIEW</small><strong>Complete analysis summary</strong></span></div>
         <ul>{overviewBullets.map((bullet, index) => <li key={index}>{bullet}</li>)}</ul>
       </section>
-      {plan || !validHtml ? (
-        <NativeSharedDashboard analysis={analysis} plan={plan} />
-      ) : customization?.html ? (
+      {customization?.html && validHtml ? (
         <iframe title="Shared customized dashboard" sandbox="allow-scripts" referrerPolicy="no-referrer" srcDoc={enhanceStitchHtml(customization.html)} />
+      ) : customization?.htmlUrl ? (
+        <iframe title="Shared customized dashboard" sandbox="allow-scripts allow-same-origin" referrerPolicy="no-referrer" src={customization.htmlUrl} />
       ) : customization?.imageUrl ? (
         <img src={customization.imageUrl} alt="Shared customized dashboard" />
       ) : (
-        <section className="stitch-empty-stage"><LockKeyhole /><h1>Customized dashboard output is unavailable</h1><p>Ask the owner to generate and share the Stitch dashboard again.</p></section>
+        <section className="stitch-empty-stage"><LockKeyhole /><h1>Stitch preview is unavailable</h1><p>The Stitch project was generated, but no embeddable HTML or preview image was returned. Open or regenerate the website from the owner dashboard.</p></section>
       )}
     </main>
   );

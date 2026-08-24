@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import tempfile
 import unittest
+from contextlib import closing
 from pathlib import Path
 
 from backend import account_store
@@ -24,7 +25,7 @@ class AccountLifecycleTests(unittest.TestCase):
         account_store._DATA_DIR, account_store._DB_PATH, account_store._OUTBOX_PATH = self.original_paths
         self.temp_dir.cleanup()
 
-    def test_signup_requires_onboarding_once_then_password_login_opens_dashboard(self) -> None:
+    def test_signup_saves_details_and_password_login_opens_dashboard(self) -> None:
         email = "owner@example.com"
         password = "Strong@123"
         created = account_store.create_account({
@@ -39,11 +40,16 @@ class AccountLifecycleTests(unittest.TestCase):
         })
         self.assertTrue(created["emailVerified"])
         user_id = created["workspaceUserId"]
-        self.assertEqual(created["onboarding"]["nextStep"], "/onboarding/company")
+        self.assertTrue(created["onboarding"]["completed"])
+        self.assertEqual(created["onboarding"]["nextStep"], "/dashboard")
 
         first_login = account_store.authenticate_account(email, password)
-        self.assertFalse(first_login["onboarding"]["completed"])
-        self.assertEqual(first_login["onboarding"]["nextStep"], "/onboarding/company")
+        self.assertTrue(first_login["onboarding"]["completed"])
+        self.assertEqual(first_login["onboarding"]["nextStep"], "/dashboard")
+
+        company = account_store.get_company_onboarding(user_id)
+        self.assertIsNotNone(company)
+        self.assertEqual(company["companyName"], "Byizon")
 
         account_store.save_company_onboarding(user_id, {
             "companyName": "Byizon",
@@ -71,6 +77,37 @@ class AccountLifecycleTests(unittest.TestCase):
         self.assertTrue(password_login["onboarding"]["completed"])
         self.assertEqual(password_login["workspaceUserId"], user_id)
         self.assertEqual(password_login["onboarding"]["nextStep"], "/dashboard")
+
+    def test_signup_persists_account_for_later_password_login(self) -> None:
+        email = "persisted@example.com"
+        password = "Strong@123"
+        created = account_store.create_account({
+            "firstName": "Persisted",
+            "lastName": "User",
+            "workEmail": email,
+            "companyName": "Byizon",
+            "phoneCountryCode": "+91",
+            "phoneNumber": "9876543210",
+            "password": password,
+            "termsAccepted": True,
+        })
+        self.assertTrue(created["onboarding"]["completed"])
+        self.assertEqual(created["onboarding"]["nextStep"], "/dashboard")
+
+        with closing(account_store._database()) as db:
+            row = db.execute(
+                "SELECT user_id, work_email, password_hash FROM workspace_accounts WHERE work_email = ?",
+                (email,),
+            ).fetchone()
+
+        self.assertIsNotNone(row)
+        self.assertEqual(row["user_id"], created["workspaceUserId"])
+        self.assertEqual(row["work_email"], email)
+        self.assertNotEqual(bytes(row["password_hash"]), password.encode("utf-8"))
+
+        later_login = account_store.authenticate_account(email, password)
+        self.assertEqual(later_login["workspaceUserId"], created["workspaceUserId"])
+        self.assertEqual(later_login["onboarding"]["nextStep"], "/dashboard")
 
     def test_google_login_links_to_an_existing_email_account(self) -> None:
         created = account_store.create_account({

@@ -21,10 +21,20 @@ try {
     project = stitch.project(projectId);
     screen = await project.generate(prompt, 'DESKTOP');
   }
-  const htmlUrl = await screen.getHtml();
-  const imageUrl = await screen.getImage();
-  let html = '';
+  let htmlUrl = '';
+  let imageUrl = '';
   try {
+    htmlUrl = await screen.getHtml();
+  } catch (assetError) {
+    htmlUrl = '';
+  }
+  try {
+    imageUrl = await screen.getImage();
+  } catch (assetError) {
+    imageUrl = '';
+  }
+  let html = '';
+  if (htmlUrl) try {
     const response = await fetch(htmlUrl);
     if (response.ok) {
       html = await response.text();

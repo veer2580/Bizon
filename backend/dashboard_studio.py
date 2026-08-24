@@ -12,15 +12,33 @@ from .ai.orchestrator import configured as ai_configured, orchestrate_json
 
 ROOT = Path(__file__).resolve().parents[1]
 STITCH_BRIDGE = Path(__file__).with_name("stitch_bridge.mjs")
+ENV_FILE = ROOT / ".env"
 ALLOWED_THEMES = {"light", "dark", "contrast"}
 ALLOWED_DENSITIES = {"compact", "comfortable"}
 ALLOWED_LAYOUTS = {"grid", "story"}
 
 
+def _local_env_value(name: str) -> str:
+    if os.getenv(name):
+        return os.getenv(name, "").strip()
+    if not ENV_FILE.exists():
+        return ""
+    prefix = f"{name}="
+    try:
+        for line in ENV_FILE.read_text(encoding="utf-8").splitlines():
+            stripped = line.strip()
+            if not stripped or stripped.startswith("#") or not stripped.startswith(prefix):
+                continue
+            return stripped[len(prefix):].strip().strip('"').strip("'")
+    except OSError:
+        return ""
+    return ""
+
+
 def studio_config() -> dict[str, Any]:
     return {
         "huggingFaceConfigured": ai_configured(),
-        "stitchConfigured": bool(os.getenv("STITCH_API_KEY", "").strip()),
+        "stitchConfigured": bool(_local_env_value("STITCH_API_KEY")),
     }
 
 
@@ -126,7 +144,8 @@ def _sanitize_plan(candidate: dict[str, Any], analysis: dict[str, Any]) -> dict[
 
 
 def _stitch_design(prompt: str, analysis: dict[str, Any], plan: dict[str, Any], stitch_state: dict[str, Any] | None = None) -> dict[str, Any]:
-    if not os.getenv("STITCH_API_KEY", "").strip():
+    stitch_api_key = _local_env_value("STITCH_API_KEY")
+    if not stitch_api_key:
         return {"configured": False, "status": "not_configured"}
     node = _node_binary()
     if not node or not STITCH_BRIDGE.exists():
@@ -164,7 +183,9 @@ def _stitch_design(prompt: str, analysis: dict[str, Any], plan: dict[str, Any], 
         "request": prompt[:1000],
     }
     try:
-        completed = subprocess.run([node, str(STITCH_BRIDGE)], input=json.dumps(safe_prompt), text=True, capture_output=True, timeout=300, cwd=ROOT, check=False)
+        bridge_env = os.environ.copy()
+        bridge_env["STITCH_API_KEY"] = stitch_api_key
+        completed = subprocess.run([node, str(STITCH_BRIDGE)], input=json.dumps(safe_prompt), text=True, capture_output=True, timeout=300, cwd=ROOT, check=False, env=bridge_env)
         result = json.loads(completed.stdout or "{}")
         return {"configured": True, **result}
     except (subprocess.TimeoutExpired, json.JSONDecodeError, OSError) as exc:
@@ -181,5 +202,5 @@ def plan_dashboard(
     deterministic = _deterministic_plan(prompt, analysis, current)
     llm = None if use_stitch else _hf_plan(prompt, analysis, deterministic)
     plan = _sanitize_plan({**deterministic, **(llm or {})}, analysis)
-    stitch = _stitch_design(prompt, analysis, plan, stitch_state) if use_stitch else {"configured": bool(os.getenv("STITCH_API_KEY", "").strip()), "status": "not_requested"}
+    stitch = _stitch_design(prompt, analysis, plan, stitch_state) if use_stitch else {"configured": bool(_local_env_value("STITCH_API_KEY")), "status": "not_requested"}
     return {"plan": plan, "source": "stitch" if use_stitch else "huggingface" if llm else "deterministic", "stitch": stitch}

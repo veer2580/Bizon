@@ -897,7 +897,15 @@ export default function Dashboard() {
                 </button>
               </div>
             ) : (
-              <div className="dashboard-publish-building"><Loader2 className="spin" size={16} /> {autoWebsite.status === 'error' ? autoWebsite.error : 'Website link and password are being prepared automatically.'}</div>
+              <div className="dashboard-publish-building">
+                {autoWebsite.status === 'error' ? <AlertTriangle size={16} /> : <Loader2 className="spin" size={16} />}
+                {autoWebsite.status === 'error' ? autoWebsite.error : 'Website link and password are being prepared automatically.'}
+                {autoWebsite.status === 'error' && (
+                  <button className="dashboard-new-link-button" onClick={generateFreshWebsiteLink} type="button">
+                    <RefreshCw size={15} /> Retry Stitch link
+                  </button>
+                )}
+              </div>
             )}
           </div>
         </section>
