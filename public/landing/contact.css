@@ -1,0 +1,580 @@
+:root {
+  --orange: #f25b2a;
+  --navy: #06213c;
+  --text: #10213b;
+  --muted: #5f6e86;
+  --cream: #fffdf8;
+  --soft: #f5f2ec;
+  --line: #e7dfd5;
+  --blue: #1f6fbd;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--soft); color: var(--text); font-family: var(--font-sans); }
+
+.contact-header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+  padding: 0 34px;
+  background: var(--navy);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.contact-brand .brand-wordmark-image { width: 130px; filter: brightness(0) invert(1); }
+.contact-actions { display: flex; align-items: center; gap: 18px; }
+.contact-actions a { text-decoration: none; }
+.login-btn { color: #fff; font-weight: 800; }
+.start-btn, .orange-btn, .message-card button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 4px;
+  background: var(--orange);
+  color: #fff;
+  text-decoration: none;
+  font-family: inherit;
+  font-weight: 850;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(242,91,42,.18);
+}
+.start-btn { min-width: 96px; padding: 11px 16px; font-size: .78rem; }
+.orange-btn { padding: 12px 20px; font-size: .8rem; }
+
+.contact-page { max-width: 1518px; margin: 0 auto; background: var(--cream); overflow: hidden; }
+.eyebrow {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--blue);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.contact-hero {
+  display: grid;
+  grid-template-columns: 46% 54%;
+  min-height: 455px;
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-hero-copy { align-self: center; padding: 68px 54px 58px 72px; }
+.contact-hero h1,
+.faq-section h2,
+.global-outlook h2,
+.contact-cta h2 {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.contact-hero h1 {
+  max-width: 485px;
+  font-size: clamp(4rem, 6.8vw, 6.5rem);
+  line-height: .94;
+}
+.contact-hero h1 span,
+.global-outlook h2 span,
+.contact-cta h2 span { color: var(--orange); }
+.contact-hero p {
+  max-width: 450px;
+  margin: 26px 0 0;
+  color: #273851;
+  font-size: .95rem;
+  line-height: 1.7;
+  font-weight: 650;
+}
+
+.contact-network-visual {
+  position: relative;
+  min-height: 455px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 48% 46%, rgba(44,148,255,.32), transparent 20%),
+    radial-gradient(circle at 78% 28%, rgba(242,91,42,.18), transparent 24%),
+    linear-gradient(115deg, rgba(255,253,248,.96) 0 6%, rgba(6,33,60,.7) 16%, #06182d 100%);
+}
+.contact-hero-exact { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.contact-network-visual .network-grid,
+.contact-network-visual .globe-ring,
+.contact-network-visual .mail-core,
+.contact-network-visual .node { display: none; }
+.network-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(74, 163, 255, .12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 163, 255, .12) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: .45;
+}
+.globe-ring {
+  position: absolute;
+  left: 17%;
+  top: 16%;
+  width: 62%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(90,178,255,.28);
+  border-radius: 50%;
+  box-shadow: inset 0 0 42px rgba(65,146,255,.18), 0 0 65px rgba(53,129,232,.2);
+}
+.ring-two { transform: rotateX(66deg) rotateZ(-14deg); }
+.mail-core {
+  position: absolute;
+  left: 43%;
+  top: 32%;
+  width: 135px;
+  height: 100px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(167,219,255,.38);
+  border-radius: 14px;
+  background: rgba(11,39,70,.72);
+  box-shadow: 0 0 38px rgba(69,181,255,.42);
+}
+.mail-core svg { width: 86px; fill: none; stroke: #bceaff; stroke-width: 6; filter: drop-shadow(0 0 10px rgba(129,222,255,.9)); }
+.node {
+  position: absolute;
+  width: 58px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(151,208,255,.25);
+  border-radius: 9px;
+  background: rgba(13,44,78,.78);
+  color: #bde8ff;
+  font-size: 1.25rem;
+  box-shadow: 0 0 18px rgba(242,91,42,.16);
+}
+.n1 { left: 23%; top: 15%; } .n2 { right: 23%; top: 13%; }
+.n3 { right: 11%; top: 31%; } .n4 { left: 23%; bottom: 23%; }
+.n5 { right: 25%; bottom: 18%; }
+
+.section-pad { padding: 38px 72px; border-bottom: 1px solid var(--line); }
+.consultation-section {
+  min-height: 510px;
+  display: grid;
+  grid-template-columns: 1fr .92fr;
+  gap: 56px;
+  align-items: center;
+  margin: 34px;
+  padding: 56px 68px;
+  border: 1px solid #dce5ef;
+  border-radius: 8px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 88% 18%, rgba(64, 153, 255, .18), transparent 25%),
+    radial-gradient(circle at 70% 78%, rgba(242, 91, 42, .12), transparent 28%),
+    #fff;
+  box-shadow: 0 18px 50px rgba(13, 39, 70, .08);
+}
+.consultation-copy { position: relative; z-index: 2; }
+.consultation-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: #eaf3ff;
+  color: #1768c5;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.consultation-kicker::before { content: '▦'; color: var(--orange); font-size: 1rem; }
+.consultation-copy h2 {
+  max-width: 620px;
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-serif);
+  font-size: clamp(3.2rem, 5vw, 5.4rem);
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: 0;
+}
+.consultation-copy h2 span { color: var(--orange); }
+.consultation-copy p {
+  max-width: 650px;
+  margin: 26px 0 30px;
+  color: #5d6c81;
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.72;
+}
+.consultation-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  min-height: 52px;
+  padding: 0 26px;
+  border-radius: 6px;
+  background: #092541;
+  color: #fff;
+  font-size: .9rem;
+  font-weight: 900;
+  box-shadow: 0 14px 28px rgba(9, 37, 65, .22);
+  transition: transform .2s ease, background .2s ease;
+}
+.consultation-cta:hover { transform: translateY(-2px); background: #123c64; }
+.consultation-visual { position: relative; min-height: 390px; display: grid; place-items: center; }
+.calendar-backdrop {
+  position: absolute;
+  left: 0;
+  top: 68px;
+  width: 62%;
+  height: 250px;
+  padding: 28px;
+  border: 1px solid #d9e4ef;
+  border-radius: 14px;
+  background: rgba(255,255,255,.66);
+  box-shadow: 0 20px 38px rgba(17, 48, 80, .08);
+}
+.calendar-backdrop span { display: block; height: 34px; margin-bottom: 14px; border-radius: 7px; background: linear-gradient(90deg, #eff3f7 35%, #fff 35%); }
+.meeting-card {
+  position: relative;
+  z-index: 2;
+  width: min(440px, 92%);
+  margin-left: auto;
+  padding: 24px;
+  border: 1px solid #d9e4ef;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 22px 55px rgba(14, 49, 83, .16);
+}
+.meeting-card header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid #e8edf3; }
+.meeting-card header div { display: grid; gap: 5px; }
+.meeting-card header strong { font-size: 1rem; color: var(--text); }
+.meeting-card header small { color: #8a97a8; font-size: .72rem; }
+.meeting-camera { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: #eaf3ff; color: #1768c5; font-weight: 900; }
+.meeting-body { display: grid; grid-template-columns: 1fr 126px; gap: 18px; padding: 22px 0; }
+.calendar-title { display: flex; justify-content: space-between; margin-bottom: 15px; color: #22344b; font-size: .72rem; }
+.weekdays, .dates { display: grid; grid-template-columns: repeat(7, 1fr); gap: 7px; text-align: center; }
+.weekdays { margin-bottom: 8px; color: #96a2b1; font-size: .62rem; }
+.dates span { display: grid; place-items: center; min-height: 23px; border-radius: 50%; color: #617084; font-size: .65rem; }
+.dates .selected { background: var(--orange); color: #fff; font-weight: 900; box-shadow: 0 5px 14px rgba(242,91,42,.3); }
+.meeting-times { display: grid; gap: 9px; }
+.meeting-times strong { margin-bottom: 2px; color: #26384e; font-size: .68rem; }
+.meeting-times span { display: grid; place-items: center; min-height: 34px; border: 1px solid #dde5ed; border-radius: 6px; color: #506176; font-size: .66rem; }
+.meeting-times .active { border-color: var(--orange); background: var(--orange); color: #fff; font-weight: 900; }
+.confirm-meeting { display: grid; place-items: center; min-height: 42px; border-radius: 6px; background: linear-gradient(90deg, #f25b2a, #ff7a35); color: #fff; font-size: .76rem; font-weight: 900; }
+.contact-grid { display: grid; grid-template-columns: 44% 56%; gap: 28px; align-items: start; }
+.locations-card, .message-card, .quick-contact article, .faq-grid article {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(16,33,59,.04);
+}
+.locations-card, .message-card { padding: 26px 28px; }
+.location-item {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+.location-item:last-child { border-bottom: 0; padding-bottom: 0; }
+.location-item h3 { margin: 0 0 18px; color: var(--text); font-size: 1rem; font-weight: 900; text-transform: uppercase; line-height: 1.35; }
+.location-item p { margin: 9px 0; color: var(--muted); font-size: .82rem; font-weight: 700; line-height: 1.45; }
+.location-item p span { color: var(--orange); margin-right: 9px; }
+.bridge-illus, .palace-illus {
+  height: 145px;
+  position: relative;
+  opacity: .8;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.bridge-illus {
+  background-image: url("assets/contact-exact/san-francisco.png");
+}
+.palace-illus {
+  background-image: url("assets/contact-exact/jaipur-palace.png");
+}
+
+.message-card { display: grid; gap: 13px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.message-card label { color: var(--text); font-size: .78rem; font-weight: 850; }
+.message-card input, .message-card select, .message-card textarea {
+  width: 100%;
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+  padding: 13px 14px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: .82rem;
+  outline: none;
+}
+.message-card textarea { min-height: 118px; resize: vertical; }
+.nda-check { display: flex; align-items: center; gap: 9px; color: var(--muted); }
+.nda-check input { width: auto; margin: 0; }
+.message-card button { width: 100%; padding: 14px; font-size: .86rem; }
+
+.quick-contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding-top: 0;
+}
+.quick-contact article {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  align-items: center;
+  min-height: 90px;
+  padding: 20px 28px;
+}
+.quick-contact span {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-size: 1.4rem;
+}
+.quick-contact p { margin: 0; color: var(--muted); font-size: .86rem; font-weight: 700; }
+.quick-contact strong { color: var(--orange); font-size: 1.05rem; }
+
+.faq-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+.faq-section h2 { font-size: clamp(2.3rem, 4vw, 4.4rem); line-height: 1; }
+.faq-head p { margin: 8px 0 0; color: var(--muted); font-size: .86rem; font-weight: 650; }
+.faq-head a {
+  border: 1px solid rgba(242,91,42,.35);
+  border-radius: 4px;
+  color: var(--orange);
+  padding: 12px 18px;
+  text-decoration: none;
+  font-size: .78rem;
+  font-weight: 900;
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 18px;
+}
+.faq-grid article {
+  position: relative;
+  min-height: 72px;
+  padding: 15px 46px 15px 20px;
+}
+.faq-grid h3 { margin: 0 0 4px; color: var(--text); font-size: .88rem; }
+.faq-grid p { margin: 0; color: var(--muted); font-size: .76rem; line-height: 1.45; }
+.faq-grid span { position: absolute; right: 19px; top: 21px; color: var(--text); font-size: 1.35rem; }
+
+.global-outlook, .contact-cta {
+  display: grid;
+  grid-template-columns: 42% 58%;
+  gap: 24px;
+  padding: 42px 72px;
+  color: #fff;
+  background: var(--navy);
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.global-outlook h2, .contact-cta h2 { color: #fff; font-size: clamp(2.4rem, 4vw, 4.5rem); line-height: 1.02; }
+.global-outlook ul { margin: 24px 0 0; padding: 0; list-style: none; display: grid; gap: 16px; }
+.global-outlook li { position: relative; padding-left: 28px; color: rgba(255,255,255,.88); font-size: .95rem; font-weight: 800; }
+.global-outlook li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 14px rgba(242,91,42,.9);
+}
+.world-map {
+  position: relative;
+  min-height: 245px;
+  background:
+    radial-gradient(circle at 66% 46%, rgba(242,91,42,.95) 0 5px, transparent 6px),
+    radial-gradient(circle at 30% 43%, rgba(242,91,42,.9) 0 4px, transparent 5px),
+    radial-gradient(circle at 81% 61%, rgba(69,166,255,.8) 0 3px, transparent 4px),
+    radial-gradient(ellipse at center, rgba(78,162,255,.12), transparent 60%);
+}
+.world-map img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.world-map::before, .world-map::after { display: none; }
+.world-map::before {
+  content: "";
+  position: absolute;
+  inset: 12px 0 0;
+  background-image: radial-gradient(rgba(111,185,255,.75) 1px, transparent 1.6px);
+  background-size: 9px 9px;
+  mask-image: radial-gradient(ellipse at center, #000 0 62%, transparent 70%);
+}
+.world-map::after {
+  content: "";
+  position: absolute;
+  inset: 45px 20px;
+  border-top: 1px solid rgba(242,91,42,.65);
+  border-radius: 50%;
+  transform: rotate(-12deg);
+  box-shadow: 0 -30px 0 -29px rgba(242,91,42,.55), 0 38px 0 -37px rgba(242,91,42,.55);
+}
+.contact-cta {
+  align-items: center;
+  background:
+    radial-gradient(circle at 86% 50%, rgba(47,116,205,.2), transparent 35%),
+    linear-gradient(90deg, #061a31, #092542);
+}
+.contact-cta p { max-width: 420px; color: rgba(255,255,255,.78); font-size: .9rem; line-height: 1.55; }
+.cta-actions { display: flex; justify-content: flex-end; gap: 16px; }
+.dark-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.36);
+  border-radius: 4px;
+  color: #fff;
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: .8rem;
+  font-weight: 850;
+}
+
+.site-footer {
+  max-width: 1518px;
+  margin: 0 auto;
+  background: var(--navy);
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding: 42px 0 18px;
+}
+.site-footer .footer-columns-grid {
+  grid-template-columns: 1.8fr .95fr 1.25fr 1.25fr 1fr 1fr;
+  max-width: 1298px;
+  gap: 58px;
+  margin-bottom: 30px;
+  padding: 0 64px;
+}
+.site-footer .footer-brand-wordmark { filter: brightness(0) invert(1); }
+.site-footer .footer-bio,
+.site-footer .col-links a,
+.site-footer .footer-bottom-bar,
+.site-footer .footer-legal a,
+.site-footer .social-icon { color: rgba(255,255,255,.7); }
+.site-footer .col-title,
+.site-footer .footer-logo-text { color: #fff; }
+.site-footer .footer-bottom-bar {
+  max-width: 1298px;
+  padding: 18px 64px 0;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.site-footer .footer-tagline-banner { display: none; }
+
+@media (max-width: 900px) {
+  .consultation-section { min-height: 300px; margin: 18px; padding: 30px 28px; gap: 24px; }
+  .consultation-copy h2 { font-size: 2.4rem; }
+  .consultation-copy p { margin: 16px 0 20px; font-size: .72rem; }
+  .consultation-kicker { margin-bottom: 14px; padding: 7px 11px; font-size: .52rem; }
+  .consultation-cta { min-height: 42px; padding: 0 18px; font-size: .68rem; }
+  .consultation-visual { min-height: 270px; }
+  .meeting-card { width: 100%; padding: 16px; }
+  .meeting-body { grid-template-columns: 1fr 96px; gap: 10px; padding: 15px 0; }
+  .calendar-backdrop { height: 190px; }
+  .contact-header { height: 37px; padding: 0 17px; gap: 12px; }
+  .contact-brand .brand-wordmark-image { width: 66px; }
+  .site-nav.unified-nav { gap: 14px; }
+  .site-nav.unified-nav a, .site-nav.unified-nav button, .contact-actions .login-btn { font-size: .34rem; }
+  .contact-actions { gap: 9px; }
+  .start-btn { min-width: 45px; padding: 6px 9px; font-size: .34rem; }
+
+  .contact-hero { min-height: 198px; }
+  .contact-hero-copy { padding: 30px 24px 24px 27px; }
+  .eyebrow { margin-bottom: 5px; font-size: .34rem; }
+  .contact-hero h1 { max-width: 200px; font-size: 1.72rem; }
+  .contact-hero p { max-width: 195px; margin-top: 12px; font-size: .34rem; line-height: 1.48; }
+  .contact-network-visual { min-height: 198px; }
+  .mail-core { width: 66px; height: 50px; border-radius: 7px; }
+  .mail-core svg { width: 43px; stroke-width: 6; }
+  .node { width: 30px; height: 25px; border-radius: 5px; font-size: .65rem; }
+
+  .section-pad { padding: 17px 26px; }
+  .contact-grid { grid-template-columns: 44% 56%; gap: 12px; }
+  .locations-card, .message-card { padding: 14px 14px; }
+  .location-item { grid-template-columns: 70px 1fr; gap: 10px; padding: 10px 0; }
+  .bridge-illus, .palace-illus { height: 82px; }
+  .location-item h3 { margin-bottom: 7px; font-size: .4rem; }
+  .location-item p { margin: 4px 0; font-size: .34rem; }
+
+  .message-card { gap: 6px; }
+  .form-row { gap: 8px; }
+  .message-card label { font-size: .34rem; }
+  .message-card input, .message-card select, .message-card textarea { margin-top: 4px; padding: 6px 7px; font-size: .34rem; }
+  .message-card textarea { min-height: 56px; }
+  .message-card button { padding: 7px; font-size: .36rem; }
+
+  .quick-contact { grid-template-columns: 1fr 1fr; }
+  .quick-contact article { grid-template-columns: 36px 1fr; min-height: 45px; padding: 10px 14px; }
+  .quick-contact span { width: 25px; height: 25px; font-size: .72rem; }
+  .quick-contact p { font-size: .36rem; }
+  .quick-contact strong { font-size: .46rem; }
+
+  .faq-section h2 { font-size: 1.35rem; }
+  .faq-head { margin-bottom: 10px; }
+  .faq-head p, .faq-head a { font-size: .34rem; }
+  .faq-head a { padding: 6px 9px; }
+  .faq-grid { gap: 6px 10px; }
+  .faq-grid article { min-height: 46px; padding: 8px 24px 8px 10px; }
+  .faq-grid h3 { font-size: .38rem; }
+  .faq-grid p { font-size: .32rem; }
+  .faq-grid span { right: 10px; top: 11px; font-size: .75rem; }
+
+  .global-outlook, .contact-cta { padding: 18px 26px; }
+  .global-outlook h2, .contact-cta h2 { font-size: 1.25rem; }
+  .global-outlook ul { margin-top: 12px; gap: 8px; }
+  .global-outlook li { padding-left: 15px; font-size: .38rem; }
+  .global-outlook li::before { width: 7px; height: 7px; top: 2px; }
+  .world-map { min-height: 115px; }
+  .contact-cta p { font-size: .36rem; }
+  .cta-actions { gap: 8px; }
+  .orange-btn, .dark-outline { padding: 7px 11px; font-size: .34rem; }
+  .site-footer { padding: 21px 0 10px; }
+  .site-footer .footer-columns-grid {
+    grid-template-columns: 1.45fr .85fr 1fr 1fr .85fr .85fr;
+    gap: 28px;
+    margin-bottom: 14px;
+    padding: 0 24px;
+  }
+  .site-footer .footer-brand-wordmark { width: 77px; }
+  .site-footer .footer-logo { margin-bottom: 6px; }
+  .site-footer .footer-sublabel { margin-bottom: 8px; font-size: .33rem; }
+  .site-footer .footer-bio { max-width: 116px; font-size: .35rem; line-height: 1.48; }
+  .site-footer .col-title { margin-bottom: 8px; font-size: .38rem; }
+  .site-footer .col-links { gap: 5px; }
+  .site-footer .col-links a { font-size: .35rem; line-height: 1.2; }
+  .site-footer .footer-bottom-bar { padding: 10px 24px 0; font-size: .34rem; }
+  .site-footer .footer-socials { gap: 7px; }
+}
+
+@media (max-width: 420px) {
+  .contact-header { height: auto; flex-wrap: wrap; padding: 14px 18px; }
+  .contact-hero, .consultation-section, .contact-grid, .quick-contact, .faq-grid, .global-outlook, .contact-cta { grid-template-columns: 1fr; }
+  .consultation-section { margin: 12px; padding: 26px 18px; }
+  .consultation-copy h2 { font-size: 2.55rem; }
+  .consultation-visual { min-height: 320px; }
+  .meeting-card { margin: 0; }
+  .form-row { grid-template-columns: 1fr; }
+}

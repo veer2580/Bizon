@@ -30,6 +30,10 @@ import AIWebsiteGenerator from "./pages/AIWebsiteGenerator";
 import GlobalVoiceAssistant from "./voice/GlobalVoiceAssistant";
 import { getAuthSession } from "./api/universalBackend";
 
+function LandingPage() {
+  return <iframe className="integrated-landing-frame" src="/landing/index.html" title="Byizon AI Powered Business OS" />;
+}
+
 function AppVoiceAssistant() {
   return <GlobalVoiceAssistant />;
 }
@@ -77,8 +81,8 @@ function App() {
       <DataProvider>
         <BrowserRouter>
           <Routes>
-          <Route path="/"              element={<Navigate to="/dashboard" replace />} />
-          <Route path="/landing"       element={<Navigate to="/dashboard" replace />} />
+          <Route path="/"              element={<LandingPage />} />
+          <Route path="/landing"       element={<LandingPage />} />
           <Route path="/home"          element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/login"         element={<Login />}        />
           <Route path="/signup"        element={<Signup />}       />

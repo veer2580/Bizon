@@ -1,0 +1,380 @@
+:root {
+  --orange: #f25b2a;
+  --navy: #123052;
+  --blue: #2563eb;
+  --offwhite: #f7f5f0;
+  --warm: #faf9f6;
+  --muted: #4b5872;
+  --line: #e7ebf3;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--offwhite); color: var(--navy); font-family: var(--font-sans); }
+
+.detail-header { height: 92px; display: flex; align-items: center; justify-content: space-between; padding: 0 64px; background: linear-gradient(180deg,#18416d 0%,#143c65 100%); border-bottom: 1px solid rgba(255,255,255,.12); position: relative; z-index: 10; }
+.detail-brand,.detail-nav,.detail-actions,.hero-actions { display: flex; align-items: center; }
+.detail-brand { gap: 12px; color: #fff; text-decoration: none; font-size: 1.55rem; font-weight: 800; }
+.logo-mark { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+.detail-nav { gap: 32px; }
+.detail-actions { gap: 24px; }
+.detail-nav a,.detail-nav button,.login-btn { color: rgba(255,255,255,.86); text-decoration: none; font-family: inherit; font-size: .9rem; font-weight: 800; }
+.detail-nav button,.login-btn { background: none; border: 0; cursor: pointer; }
+.detail-nav-dropdown { position: relative; padding: 34px 0; }
+.detail-nav-dropdown > button { color: #fff; border-bottom: 2px solid var(--orange); padding-bottom: 12px; }
+.detail-nav-menu { position: absolute; top: 78px; left: -18px; width: 215px; background: var(--warm); border: 1px solid #eef1f6; border-radius: 8px; box-shadow: 0 12px 28px rgba(14,28,64,.16); padding: 10px 8px; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .2s ease, transform .2s ease, visibility .2s ease; }
+.detail-nav-menu a { display: block; padding: 10px 9px; border-radius: 6px; color: var(--navy); }
+.detail-nav-menu a.active,.detail-nav-menu a:hover { color: var(--orange); background: #fff0eb; }
+.detail-nav-dropdown:hover .detail-nav-menu,.detail-nav-dropdown:focus-within .detail-nav-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.company-menu { width: 126px; }
+.start-btn,.primary-btn { border: 0; background: var(--orange); color: #fff; font-family: inherit; font-weight: 800; border-radius: 6px; cursor: pointer; text-decoration: none; }
+.start-btn { font-size: .95rem; padding: 15px 24px; min-width: 150px; }
+.primary-btn { padding: 14px 22px; box-shadow: 0 10px 22px rgba(242,91,42,.22); }
+.secondary-btn { color: var(--navy); border: 1px solid #b9c5d9; border-radius: 6px; padding: 13px 22px; text-decoration: none; font-weight: 800; background: rgba(255,255,255,.56); }
+
+.detail-page { max-width: 1380px; margin: 0 auto; }
+.detail-hero { min-height: 520px; display: grid; grid-template-columns: 430px 1fr; gap: 54px; align-items: center; padding: 54px 96px 42px; border-bottom: 1px solid var(--line); }
+.eyebrow { color: var(--blue); text-transform: uppercase; font-size: .9rem; font-weight: 900; display: block; margin-bottom: 18px; }
+h1,h2 { font-family: var(--font-serif); font-weight: 400; letter-spacing: 0; }
+h1 { font-size: 4rem; line-height: 1.08; margin-bottom: 22px; }
+h1 span,h2 span { color: var(--orange); }
+.detail-copy p,.section-copy p,.cta-section p { color: var(--muted); font-size: 1.02rem; font-weight: 650; line-height: 1.62; max-width: 410px; margin-bottom: 28px; }
+.hero-actions { gap: 16px; }
+
+.detail-visual { min-height: 380px; background: radial-gradient(circle at 50% 30%, rgba(37,99,235,.16), transparent 34%), var(--warm); border: 1px solid #e8edf6; border-radius: 14px; box-shadow: 0 14px 32px rgba(15,29,66,.08); position: relative; overflow: hidden; padding: 26px; }
+.visual-title { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 18px; font-weight: 900; }
+.metric-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 18px; }
+.metric-row span { background: #fffdf8; border: 1px solid #dfe8fb; border-radius: 8px; padding: 14px; font-weight: 900; }
+.metric-row small { display: block; color: #64748b; font-size: .72rem; margin-top: 4px; }
+.chart-area { min-height: 145px; border-radius: 10px; background: linear-gradient(135deg,#eef5ff,#fffdf8); border: 1px solid #dfe8fb; position: relative; overflow: hidden; }
+.chart-area::after { content: ''; position: absolute; left: 28px; right: 28px; bottom: 34px; height: 72px; border-bottom: 5px solid var(--blue); border-right: 5px solid var(--blue); transform: skewX(-28deg); opacity: .72; }
+.insight-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+.insight-list p { margin: 0; background: #fff7f2; border: 1px solid #ffe1d4; border-radius: 8px; padding: 13px; color: var(--muted); font-size: .82rem; font-weight: 700; }
+
+.content-section { display: grid; grid-template-columns: 1fr 1.25fr; gap: 38px; align-items: center; margin: 20px 96px; background: rgba(250,249,246,.78); border: 1px solid #e8edf6; border-radius: 12px; padding: 34px; }
+.content-section.alt { grid-template-columns: 1.25fr 1fr; }
+.section-copy h2,.cta-section h2 { font-size: 3rem; line-height: 1.08; margin-bottom: 16px; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.chip-row span { border: 1px solid #dfe8fb; background: #fffdf8; color: var(--blue); border-radius: 8px; padding: 10px 13px; font-size: .78rem; font-weight: 800; }
+.feature-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+.feature-grid article { background: #fffdf8; border: 1px solid #edf1f7; border-radius: 10px; padding: 20px; transition: transform .25s ease, box-shadow .25s ease; }
+.feature-grid article:hover { transform: translateY(-6px); box-shadow: 0 18px 38px rgba(15,29,66,.14); }
+.feature-grid span { width: 46px; height: 46px; border-radius: 50%; background: #edf3ff; color: var(--blue); display: flex; align-items: center; justify-content: center; font-weight: 900; margin-bottom: 14px; }
+.feature-grid strong { display: block; margin-bottom: 8px; }
+.feature-grid p { color: var(--muted); font-size: .86rem; line-height: 1.55; font-weight: 650; }
+
+.flow-strip { margin: 20px 96px; background: linear-gradient(135deg,#061633,#081f46); color: #fff; border-radius: 12px; padding: 36px; }
+.flow-strip h2 { font-size: 2.7rem; margin-bottom: 22px; }
+.flow-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+.flow-steps article { background: rgba(255,255,255,.06); border: 1px solid rgba(96,165,250,.18); border-radius: 10px; padding: 20px; }
+.flow-steps strong { display: block; text-transform: uppercase; margin-bottom: 8px; }
+.flow-steps p { color: rgba(255,255,255,.72); font-size: .84rem; line-height: 1.5; font-weight: 650; }
+
+.cta-section { margin: 20px 96px 48px; display: grid; grid-template-columns: 1fr 260px; gap: 30px; align-items: center; background: rgba(250,249,246,.78); border: 1px solid #e8edf6; border-radius: 12px; padding: 36px; }
+.cta-orb { width: 190px; height: 190px; border-radius: 22px; background: radial-gradient(circle,#fff,#dce9ff); color: var(--blue); display: flex; align-items: center; justify-content: center; font-weight: 900; box-shadow: 0 22px 42px rgba(37,99,235,.18); animation: softFloat 5s ease-in-out infinite; }
+
+@media (max-width: 1000px) {
+  .detail-header { height: auto; padding: 18px 24px; flex-wrap: wrap; gap: 18px; }
+  .detail-nav { order: 3; width: 100%; overflow-x: auto; gap: 18px; }
+  .detail-hero,.content-section,.content-section.alt,.cta-section { grid-template-columns: 1fr; margin-left: 24px; margin-right: 24px; padding-left: 24px; padding-right: 24px; }
+  .detail-hero { padding-left: 24px; padding-right: 24px; }
+  .feature-grid,.flow-steps,.metric-row,.insight-list { grid-template-columns: 1fr; }
+  .flow-strip { margin-left: 24px; margin-right: 24px; }
+}
+
+/* ==========================================
+   1. Operations Workflow Process Visual
+   ========================================== */
+.workflow-process-visual {
+  min-height: 160px;
+  background: linear-gradient(135deg, #fbfbf9, #f5f6fa);
+  border: 1px solid #dfe8fb;
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.flow-node {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  text-align: center;
+  flex: 1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  z-index: 2;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+.flow-node.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #ffffff;
+  box-shadow: 0 8px 16px rgba(18, 48, 82, 0.2);
+}
+.flow-node.active strong {
+  color: #ffffff;
+}
+.flow-node.active small {
+  color: rgba(255, 255, 255, 0.8);
+}
+.node-icon {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+  display: block;
+  color: var(--orange);
+}
+.flow-node.active .node-icon {
+  color: #ffffff;
+  animation: pulseGlow 2s infinite;
+}
+.flow-node strong {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--navy);
+}
+.flow-node small {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.flow-connector {
+  flex: 0.5;
+  height: 4px;
+  background: #e2e8f0;
+  position: relative;
+  border-radius: 2px;
+}
+.connector-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: var(--orange);
+  border-radius: 2px;
+}
+.connector-line.animated {
+  width: 100%;
+  animation: connectFlow 2s infinite ease-in-out;
+}
+
+@keyframes connectFlow {
+  0% { width: 0; opacity: 1; }
+  50% { width: 100%; opacity: 1; }
+  100% { width: 100%; opacity: 0; }
+}
+
+/* ==========================================
+   2. Analytics Double-Bar Forecast Chart
+   ========================================== */
+.analytics-chart-container {
+  min-height: 160px;
+  background: #ffffff;
+  border: 1px solid #dfe8fb;
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: flex;
+  gap: 16px;
+}
+.chart-y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-weight: 700;
+  padding-bottom: 24px;
+  border-right: 1px dashed #e2e8f0;
+  padding-right: 12px;
+}
+.chart-bars-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 100%;
+  padding-top: 10px;
+}
+.chart-bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 42%;
+}
+.bar-pair {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 100px;
+  width: 100%;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 4px;
+}
+.bar {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  transition: height 1s ease;
+}
+.bar.actual {
+  background: var(--navy);
+}
+.bar.forecast {
+  background: linear-gradient(180deg, var(--orange) 0%, #ff8c66 100%);
+  animation: pulseHeight 3s infinite ease-in-out alternate;
+}
+.bar-value {
+  position: absolute;
+  top: -20px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.group-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-top: 8px;
+  text-align: center;
+}
+
+@keyframes pulseHeight {
+  0% { transform: scaleY(0.96); transform-origin: bottom; }
+  100% { transform: scaleY(1.02); transform-origin: bottom; }
+}
+
+/* ==========================================
+   3. Sales & Marketing Conversion Funnel
+   ========================================== */
+.sales-funnel-container {
+  min-height: 165px;
+  background: linear-gradient(135deg, #fbfbf9, #f3f6fc);
+  border: 1px solid #dfe8fb;
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.funnel-stage {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.stage-name {
+  width: 110px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--navy);
+  text-align: right;
+}
+.stage-shape {
+  background: linear-gradient(90deg, var(--navy) 0%, var(--blue) 50%, var(--orange) 100%);
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+.stage-shape:hover {
+  transform: translateX(4px);
+}
+.stage-value {
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.funnel-stage.stage-1 .stage-shape { background: var(--navy); }
+.funnel-stage.stage-2 .stage-shape { background: #1a4270; }
+.funnel-stage.stage-3 .stage-shape { background: var(--blue); }
+.funnel-stage.stage-4 .stage-shape { background: linear-gradient(90deg, var(--blue) 0%, var(--orange) 100%); }
+
+/* ==========================================
+   4. Enterprise Integration Node Network
+   ========================================== */
+.enterprise-node-network {
+  min-height: 165px;
+  background: #ffffff;
+  border: 1px solid #dfe8fb;
+  border-radius: 10px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: center;
+  gap: 20px;
+}
+.enterprise-core-node {
+  background: linear-gradient(135deg, var(--navy) 0%, #061633 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(18, 48, 82, 0.15);
+}
+.core-logo {
+  font-size: 1.8rem;
+  color: var(--orange);
+  display: block;
+  margin-bottom: 6px;
+}
+.enterprise-core-node strong {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+.status-shield {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1);
+  color: #60a5fa;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.network-satellites {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.satellite-node {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+}
+.satellite-node span {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--navy);
+}
+.satellite-node .status {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.satellite-node .status.ok {
+  color: #10b981;
+}
+.satellite-node .status.secure {
+  color: var(--blue);
+}
+

@@ -18784,3 +18784,10 @@ html body #root .dashboard-page .analysis-chat-dock {
   .shared-dashboard-report-facts dl { grid-template-columns: 1fr; }
 }
 
+ .integrated-landing-frame {
+  width: 100%;
+  height: 100vh;
+  display: block;
+  border: 0;
+  background: #fff;
+}

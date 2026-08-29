@@ -1,0 +1,236 @@
+/* ==========================================================================
+   BYIZON AI LANDING PAGE — ENHANCED KINETIC ANIMATION SYSTEM
+   ========================================================================== */
+
+/* Keyframes for Core Layout Elements */
+@keyframes pageFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes softFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes orbitPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(1) rotate(var(--orbit-rotate, 0deg));
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.05) rotate(var(--orbit-rotate, 0deg));
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 10px 24px rgba(15, 29, 66, 0.08);
+  }
+  50% {
+    box-shadow: 0 18px 38px rgba(242, 91, 42, 0.15);
+  }
+}
+
+@keyframes pulseGlowBtn {
+  0% {
+    box-shadow: 0 0 0 0 rgba(242, 91, 42, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(242, 91, 42, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(242, 91, 42, 0);
+  }
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Base Body Entrance Animation */
+body {
+  animation: pageFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Page Section & Component Reveals */
+.about-copy,
+.career-copy,
+.integration-copy,
+.about-visual,
+.integration-visual,
+.career-cards article,
+.contact-cards article,
+.intelligence-cards article,
+.integration-card,
+.flow-card,
+.contact-form,
+.open-positions,
+.mail-visual {
+  animation: pageFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.about-visual,
+.integration-visual,
+.people-visual,
+.mail-visual {
+  animation-delay: 0.15s;
+}
+
+/* Kinetic Hover States */
+.feature-node,
+.tool-node,
+.career-cards article,
+.integration-card,
+.flow-card,
+.agent-card,
+.governance-card,
+.resource-card,
+.intelligence-cards article {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              background 0.3s ease;
+}
+
+.feature-node:hover,
+.tool-node:hover,
+.career-cards article:hover,
+.integration-card:hover,
+.flow-card:hover,
+.contact-cards article:hover,
+.job-row:hover,
+.agent-card:hover,
+.governance-card:hover,
+.resource-card:hover,
+.intelligence-cards article:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 20px 42px rgba(15, 29, 66, 0.12);
+  border-color: rgba(242, 91, 42, 0.3);
+}
+
+/* Slow Floating Ambient Items */
+.ai-core,
+.integration-core,
+.main-person,
+.envelope,
+.detail-visual,
+.solution-orb,
+.network-visual {
+  animation: softFloat 6s ease-in-out infinite;
+}
+
+/* Ambient Orbit Pulses */
+.orbit,
+.tool-orbit,
+.people-orbit,
+.mail-orbit,
+.core-orbit {
+  animation: orbitPulse 5.5s ease-in-out infinite;
+}
+
+/* Card Glow Pulses */
+.intelligence-cards article,
+.open-positions,
+.contact-form,
+.modal-card {
+  animation-name: pageFadeUp, glowPulse;
+  animation-duration: 0.9s, 5.5s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1), ease-in-out;
+  animation-iteration-count: 1, infinite;
+}
+
+/* Advanced Directional Scroll Reveals */
+.scroll-reveal {
+  opacity: 0;
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+
+.scroll-reveal.reveal-left {
+  opacity: 0;
+}
+
+.scroll-reveal.reveal-right {
+  opacity: 0;
+}
+
+.scroll-reveal.reveal-down {
+  opacity: 0;
+}
+
+.scroll-reveal.reveal-zoom {
+  opacity: 0;
+}
+
+.scroll-reveal.in-view {
+  opacity: 1;
+}
+
+/* Animation Delays for Staggered Lists */
+.delay-50  { transition-delay: 50ms;  animation-delay: 50ms; }
+.delay-100 { transition-delay: 100ms; animation-delay: 100ms; }
+.delay-150 { transition-delay: 150ms; animation-delay: 150ms; }
+.delay-200 { transition-delay: 200ms; animation-delay: 200ms; }
+.delay-250 { transition-delay: 250ms; animation-delay: 250ms; }
+.delay-300 { transition-delay: 300ms; animation-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; animation-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; animation-delay: 500ms; }
+
+/* Micro-Interaction Button Shimmer */
+.btn-cta-orange:hover,
+.primary-btn:hover,
+.start-btn:hover {
+  animation: pulseGlowBtn 1.5s infinite;
+}
+
+/* Text Accent Gradient Shimmer */
+.orange-accent, 
+.about-hero h1 span, 
+.solutions-hero h1 span, 
+.ai-hero h1 span, 
+.contact-main h1 span,
+.resource-hero h1 span {
+  background: linear-gradient(120deg, #f25b2a 0%, #ff8e6e 50%, #f25b2a 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 4s linear infinite;
+}
+
+/* Mobile dropdown animation helper */
+.site-nav-dropdown.mobile-active .site-nav-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
