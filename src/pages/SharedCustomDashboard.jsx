@@ -16,17 +16,6 @@ function errorMessage(error, fallback) {
   return error instanceof Error && error.message ? error.message : fallback;
 }
 
-function parseDashboardPlan(customization) {
-  const source = String(customization?.html || '').trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '');
-  if (!source || (/^<!doctype|^<html|^<body|^<div/i.test(source))) return null;
-  try {
-    const parsed = JSON.parse(source);
-    return parsed && typeof parsed === 'object' ? parsed : null;
-  } catch {
-    return null;
-  }
-}
-
 function isStitchGenerated(customization) {
   if (!customization || customization.provider === 'native-dashboard') return false;
   return customization.status === 'generated' && Boolean(customization.html || customization.htmlUrl || customization.imageUrl || customization.projectId);
@@ -91,6 +80,8 @@ function SharedChart({ chart, forceType }) {
   );
 }
 
+// Legacy native renderer retained for backwards-compatible share payloads.
+// eslint-disable-next-line no-unused-vars
 function NativeSharedDashboard({ analysis, plan }) {
   const [query, setQuery] = useState('');
   const kpis = plan?.kpis?.length ? plan.kpis : (analysis.kpis || []).slice(0, 6);
@@ -208,7 +199,6 @@ export default function SharedCustomDashboard() {
       </main>
     );
   }
-  const plan = parseDashboardPlan(customization);
   const validHtml = /^<!doctype|^<html|^<body|^<div/i.test(String(customization?.html || '').trim());
   const overviewBullets = buildDataOverview(analysis);
   return (
