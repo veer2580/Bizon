@@ -1,5 +1,8 @@
 const isLocalBrowser = ['127.0.0.1', 'localhost'].includes(globalThis.location?.hostname);
-const DEFAULT_ANALYTICS_API_BASE = isLocalBrowser
+const isCloudflareWorkerBuild = import.meta.env.VITE_CLOUDFLARE_WORKER === 'true';
+const DEFAULT_ANALYTICS_API_BASE = isCloudflareWorkerBuild
+  ? (globalThis.location?.origin || '')
+  : isLocalBrowser
   ? `http://${globalThis.location?.hostname || '127.0.0.1'}:8000`
   : (globalThis.location?.origin || '');
 
