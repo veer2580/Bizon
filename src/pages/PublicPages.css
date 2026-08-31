@@ -8883,3 +8883,54 @@ html body #root main.login-page .signup-input-wrap input {
     max-height: none !important;
   }
 }
+/* Keep the field wrapper as the single visible control on auth screens. */
+html body #root main.signup-page .signup-input-wrap {
+  min-height: 52px !important;
+  height: 52px !important;
+  padding: 0 14px !important;
+  gap: 11px !important;
+  border: 1px solid rgba(112, 83, 68, .22) !important;
+  border-radius: 10px !important;
+  background: rgba(255, 252, 249, .97) !important;
+  box-shadow: 0 8px 22px rgba(25, 14, 10, .08) !important;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease !important;
+}
+
+html body #root main.signup-page .signup-input-wrap:focus-within {
+  border-color: #d46b36 !important;
+  background: #fff !important;
+  box-shadow: 0 0 0 3px rgba(212, 107, 54, .18), 0 10px 26px rgba(25, 14, 10, .1) !important;
+}
+
+html body #root main.signup-page .signup-input-wrap input {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #251711 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  appearance: none !important;
+}
+
+html body #root main.signup-page .signup-input-wrap input::placeholder {
+  color: #8a786f !important;
+  opacity: 1 !important;
+}
+
+html body #root main.signup-page .signup-input-wrap input:-webkit-autofill,
+html body #root main.signup-page .signup-input-wrap input:-webkit-autofill:hover,
+html body #root main.signup-page .signup-input-wrap input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #251711 !important;
+  -webkit-box-shadow: 0 0 0 1000px #fffaf7 inset !important;
+  caret-color: #251711 !important;
+}
+
+html body #root main.signup-page .signup-input-wrap svg {
+  flex: 0 0 auto;
+  color: #866f63 !important;
+}

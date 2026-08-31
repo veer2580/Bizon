@@ -511,3 +511,72 @@ html body #root .onboarding-page .onboarding-complete-footer strong {
 html body #root .onboarding-page .onboarding-complete-footer span {
   color: rgba(255, 241, 232, .72) !important;
 }
+
+/* Use one clean field surface across every onboarding step. */
+html body #root .onboarding-page .onboarding-input-wrap,
+html body #root .onboarding-page .onboarding-textarea-wrap,
+html body #root .onboarding-page .team-email-input,
+html body #root .onboarding-page .team-message > div {
+  border: 1px solid rgba(112, 83, 68, .22) !important;
+  border-radius: 10px !important;
+  background: rgba(255, 252, 249, .97) !important;
+  box-shadow: 0 8px 22px rgba(25, 14, 10, .08) !important;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease !important;
+}
+
+html body #root .onboarding-page .onboarding-input-wrap {
+  min-height: 52px !important;
+  padding: 0 14px !important;
+}
+
+html body #root .onboarding-page .onboarding-textarea-wrap {
+  padding: 12px 14px !important;
+}
+
+html body #root .onboarding-page .onboarding-input-wrap:focus-within,
+html body #root .onboarding-page .onboarding-textarea-wrap:focus-within,
+html body #root .onboarding-page .team-email-input:focus-within,
+html body #root .onboarding-page .team-message > div:focus-within {
+  border-color: #d46b36 !important;
+  background: #fff !important;
+  box-shadow: 0 0 0 3px rgba(212, 107, 54, .18), 0 10px 26px rgba(25, 14, 10, .1) !important;
+}
+
+html body #root .onboarding-page .onboarding-input-wrap input,
+html body #root .onboarding-page .onboarding-input-wrap select,
+html body #root .onboarding-page .onboarding-textarea-wrap textarea,
+html body #root .onboarding-page .team-email-input input,
+html body #root .onboarding-page .team-message > div textarea {
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #251711 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html body #root .onboarding-page .onboarding-input-wrap input,
+html body #root .onboarding-page .onboarding-input-wrap select,
+html body #root .onboarding-page .team-email-input input {
+  min-height: 34px !important;
+}
+
+html body #root .onboarding-page .onboarding-input-wrap input::placeholder,
+html body #root .onboarding-page .onboarding-textarea-wrap textarea::placeholder,
+html body #root .onboarding-page .team-email-input input::placeholder,
+html body #root .onboarding-page .team-message > div textarea::placeholder {
+  color: #8a786f !important;
+  opacity: 1 !important;
+}
+
+html body #root .onboarding-page input:-webkit-autofill,
+html body #root .onboarding-page input:-webkit-autofill:hover,
+html body #root .onboarding-page input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #251711 !important;
+  -webkit-box-shadow: 0 0 0 1000px #fffaf7 inset !important;
+  caret-color: #251711 !important;
+}
