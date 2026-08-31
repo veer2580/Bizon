@@ -158,7 +158,98 @@ body {
   width: 126px;
 }
 
+/* Canonical public header: match the compact landing-page navigation everywhere. */
+body > header:has(.unified-nav) {
+  width: 100% !important;
+  height: 100px !important;
+  min-height: 100px !important;
+  padding: 0 max(64px, calc((100vw - 1420px) / 2)) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 38px !important;
+  background: #184773 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .08) !important;
+  box-sizing: border-box !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+}
+
+body > header:has(.unified-nav) .brand-wordmark-image {
+  width: 196px !important;
+  max-height: 54px !important;
+  object-fit: contain !important;
+  filter: brightness(0) invert(1) !important;
+}
+
+body > header:has(.unified-nav) .site-nav {
+  gap: 38px !important;
+}
+
+body > header:has(.unified-nav) .site-nav > .site-nav-dropdown:nth-child(5),
+body > header:has(.unified-nav) .site-nav > .site-nav-dropdown:nth-child(7) {
+  display: none !important;
+}
+
+body > header:has(.unified-nav) .site-nav a,
+body > header:has(.unified-nav) .site-nav button {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+body > header:has(.unified-nav) [class$="-actions"],
+body > header:has(.unified-nav) [class*="-actions "] {
+  display: flex !important;
+  align-items: center !important;
+  gap: 28px !important;
+}
+
+body > header:has(.unified-nav) .login-btn {
+  padding: 10px 0 !important;
+  color: #fff !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+}
+
+body > header:has(.unified-nav) .start-btn {
+  min-width: 128px !important;
+  min-height: 46px !important;
+  padding: 0 24px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  color: #102b4a !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+}
+
+body > header:has(.unified-nav) .start-btn span {
+  display: none !important;
+}
+
 @media (max-width: 1050px) {
+  body > header:has(.unified-nav) {
+    height: auto !important;
+    min-height: 100px !important;
+    padding: 16px 24px !important;
+    flex-wrap: wrap !important;
+  }
+
+  body > header:has(.unified-nav) .brand-wordmark-image {
+    width: 160px !important;
+  }
+
   .site-nav {
     order: 3;
     width: 100%;
@@ -200,6 +291,22 @@ body {
   .site-nav-dropdown:hover .site-nav-menu,
   .site-nav-dropdown:focus-within .site-nav-menu {
     display: block;
+  }
+}
+
+@media (max-width: 680px) {
+  body > header:has(.unified-nav) {
+    gap: 14px !important;
+  }
+
+  body > header:has(.unified-nav) .brand-wordmark-image {
+    width: 138px !important;
+  }
+
+  body > header:has(.unified-nav) .start-btn {
+    min-width: 98px !important;
+    min-height: 40px !important;
+    padding: 0 17px !important;
   }
 }
 
@@ -419,6 +526,125 @@ body {
   max-width: 1380px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Canonical footer: page-level styles must not change its appearance. */
+body > .site-footer {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 80px 0 40px !important;
+  color: #475569 !important;
+  background: #faf9f6 !important;
+  border-top: 1px solid #e5e2da !important;
+}
+
+body > .site-footer .footer-columns-grid {
+  width: 100% !important;
+  max-width: 1380px !important;
+  margin: 0 auto 60px !important;
+  padding: 0 40px !important;
+  display: grid !important;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1fr !important;
+  gap: 36px !important;
+}
+
+body > .site-footer .footer-brand-wordmark {
+  width: 158px !important;
+  max-height: none !important;
+  filter: none !important;
+}
+
+body > .site-footer .footer-logo {
+  margin-bottom: 12px !important;
+}
+
+body > .site-footer .footer-sublabel {
+  margin-bottom: 16px !important;
+  color: #f25b2a !important;
+  font-size: .72rem !important;
+}
+
+body > .site-footer .footer-bio {
+  max-width: 280px !important;
+  color: #64748b !important;
+  font-size: .88rem !important;
+  line-height: 1.6 !important;
+}
+
+body > .site-footer .col-title {
+  margin-bottom: 20px !important;
+  color: #0f172a !important;
+  font-size: .85rem !important;
+}
+
+body > .site-footer .col-links {
+  gap: 12px !important;
+}
+
+body > .site-footer .col-links a {
+  color: #475569 !important;
+  font-size: .88rem !important;
+  line-height: 1.35 !important;
+}
+
+body > .site-footer .footer-bottom-bar {
+  width: 100% !important;
+  max-width: 1380px !important;
+  margin: 0 auto !important;
+  padding: 28px 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  color: #64748b !important;
+  border-top: 1px solid rgba(15, 23, 42, .08) !important;
+  font-size: .85rem !important;
+}
+
+body > .site-footer .footer-legal a,
+body > .site-footer .social-icon {
+  color: #64748b !important;
+}
+
+body > .site-footer .footer-socials {
+  display: flex !important;
+  gap: 16px !important;
+}
+
+body > .site-footer .footer-tagline-banner {
+  display: block !important;
+  max-width: 1380px !important;
+  margin: 40px auto 0 !important;
+}
+
+@media (max-width: 1024px) {
+  body > .site-footer .footer-columns-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 28px !important;
+  }
+}
+
+@media (max-width: 680px) {
+  body > .site-footer {
+    padding: 52px 0 28px !important;
+  }
+
+  body > .site-footer .footer-columns-grid {
+    padding: 0 22px !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 28px 20px !important;
+  }
+
+  body > .site-footer .footer-brand-col {
+    grid-column: 1 / -1 !important;
+  }
+
+  body > .site-footer .footer-bottom-bar {
+    padding: 24px 22px !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    text-align: center !important;
+  }
 }
 
 .tagline-text {

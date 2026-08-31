@@ -119,11 +119,12 @@ function injectFooterAndModal() {
           <div class="footer-link-col">
             <h4 class="col-title">PLATFORM</h4>
             <ul class="col-links">
-              <li><a href="index.html">Platform</a></li>
+              <li><a href="platform.html">Platform</a></li>
               <li><a href="ai.html">AI Assistant</a></li>
               <li><a href="ai.html#agents">AI Agents</a></li>
               <li><a href="solution-analytics.html">Analytics</a></li>
               <li><a href="solutions.html">Reports</a></li>
+              <li><a href="solutions.html">Data Intelligence</a></li>
               <li><a href="solution-operations.html">Automation</a></li>
             </ul>
           </div>
@@ -131,8 +132,12 @@ function injectFooterAndModal() {
           <div class="footer-link-col">
             <h4 class="col-title">SOLUTIONS</h4>
             <ul class="col-links">
+              <li><a href="solution-operations.html">Business Operations</a></li>
+              <li><a href="solutions.html">Business Intelligence</a></li>
+              <li><a href="solution-analytics.html">Data &amp; Analytics</a></li>
               <li><a href="solution-sales.html">Sales & Marketing</a></li>
               <li><a href="solution-enterprise.html">Enterprise</a></li>
+              <li><a href="ai.html">AI-Native Applications</a></li>
             </ul>
           </div>
 
@@ -140,6 +145,12 @@ function injectFooterAndModal() {
             <h4 class="col-title">INTEGRATIONS</h4>
             <ul class="col-links">
               <li><a href="integrations.html"><span class="f-icon">G</span> Google Workspace</a></li>
+              <li><a href="integrations.html"><span class="f-icon">#</span> Slack</a></li>
+              <li><a href="integrations.html"><span class="f-icon">M</span> Gmail</a></li>
+              <li><a href="integrations.html"><span class="f-icon">▲</span> Google Drive</a></li>
+              <li><a href="integrations.html"><span class="f-icon">H</span> HubSpot</a></li>
+              <li><a href="integrations.html"><span class="f-icon">J</span> Jira</a></li>
+              <li><a href="integrations.html"><span class="f-icon">&lt;/&gt;</span> API</a></li>
             </ul>
           </div>
 
@@ -149,6 +160,8 @@ function injectFooterAndModal() {
               <li><a href="about.html">About</a></li>
               <li><a href="career.html">Careers</a></li>
               <li><a href="contact.html">Contact</a></li>
+              <li><a href="news.html">News</a></li>
+              <li><a href="blog.html">Blog</a></li>
             </ul>
           </div>
 
@@ -157,6 +170,8 @@ function injectFooterAndModal() {
             <ul class="col-links">
               <li><a href="blog.html">Blog</a></li>
               <li><a href="help-center.html">Help Center</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="news.html">News</a></li>
               <li><a href="integrations.html">API Docs</a></li>
             </ul>
           </div>
@@ -165,7 +180,7 @@ function injectFooterAndModal() {
 
         <div class="footer-bottom-bar">
           <div class="footer-copy">
-            © 2026 ANTELLAY Tech. All Rights Reserved. A Celebso Group Company.
+            © 2026 ANTELLAY Labs. All Rights Reserved. A Celebso Group Company.
           </div>
           <div class="footer-legal">
             <a href="terms.html">Privacy Policy</a>
@@ -178,6 +193,9 @@ function injectFooterAndModal() {
             </a>
             <a href="https://x.com" class="social-icon" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://instagram.com" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
             </a>
           </div>
         </div>
