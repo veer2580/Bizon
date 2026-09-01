@@ -10,7 +10,7 @@ connector storage, sharing, PDF export, and optional AI/voice integrations.
 - Frontend: React 19, Vite 8, React Router, Recharts, PapaParse, SheetJS
 - Backend: Python, Uvicorn, pandas, NumPy, scikit-learn, Matplotlib
 - Storage: PostgreSQL analytics warehouse in production; isolated SQLite fallback for local development
-- Delivery: Docker, Render, Vercel, and GitHub Actions configuration
+- Delivery: Cloudflare Workers and GitHub Actions configuration
 
 ## Project structure
 
@@ -93,8 +93,7 @@ Uploaded CSV/Excel and other supported structured files follow this path:
 
 Set `DATABASE_URL` to a PostgreSQL connection string in production. If it is
 empty, local development uses `backend/data/analytics_warehouse.sqlite3` (or
-`BYIZON_SQLITE_ANALYTICS_PATH`) with the same query contract. The Render
-Blueprint provisions and wires `byizon-analytics-db` automatically.
+`BYIZON_SQLITE_ANALYTICS_PATH`) with the same query contract.
 `BYIZON_BACKGROUND_WORKERS` controls advanced-analysis concurrency (default `2`;
 keep it between `1` and `4`). No API key is required for parsing, SQL analysis,
 the quick dashboard, or background processing. `HF_API_KEY` remains optional.
@@ -102,6 +101,7 @@ the quick dashboard, or background processing. `HF_API_KEY` remains optional.
 ## Documentation
 
 - [Documentation index](docs/README.md)
+- [Project structure and editing map](docs/PROJECT_STRUCTURE.md)
 - [System architecture](docs/SYSTEM_ARCHITECTURE.md)
 - [Deployment guide](docs/DEPLOYMENT.md)
 - [OAuth and connector setup](docs/OAUTH_SETUP.md)

@@ -433,7 +433,7 @@ export default function Dashboard() {
       cancelled = true;
       if (timer) window.clearTimeout(timer);
     };
-  }, [uploadedData?.sessionId, websiteRefreshNonce]);
+  }, [uploadedData?.sessionId, uploadedData?.autoWebsite, websiteRefreshNonce]);
 
   const copyWebsiteValue = async (field, value) => {
     if (!value) return;

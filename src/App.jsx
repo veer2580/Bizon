@@ -29,6 +29,7 @@ import OnboardingComplete from "./pages/OnboardingComplete";
 import AIWebsiteGenerator from "./pages/AIWebsiteGenerator";
 import GlobalVoiceAssistant from "./voice/GlobalVoiceAssistant";
 import { getAuthSession } from "./api/universalBackend";
+import "./mobile.css";
 
 function LandingPage() {
   return <iframe className="integrated-landing-frame" src="/landing/index.html" title="Byizon AI Powered Business OS" />;

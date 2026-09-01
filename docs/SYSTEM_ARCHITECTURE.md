@@ -528,7 +528,7 @@ The report exporter creates a PDF from verified analysis. When password protecti
 
 ### Current database
 
-Render provisions PostgreSQL and injects `DATABASE_URL`. Local development uses an isolated SQLite fallback with the same schema and static query contract when PostgreSQL is not configured. Existing account/session stores remain compatible with the persistent server data directory.
+Production authentication and onboarding use Cloudflare D1. Local Python analytics can use an isolated SQLite fallback with the same static query contract when PostgreSQL is not configured.
 
 ### Production scale target
 
@@ -605,22 +605,20 @@ For finance-grade use, important totals should additionally support:
 ```mermaid
 flowchart TB
     GitHub["GitHub Repository"]
-    Render["Render Docker Web Service"]
+    Worker["Cloudflare Worker"]
     Build["Node 22 Frontend Build"]
-    Runtime["Python 3.12 Runtime"]
-    Uvicorn["Uvicorn ASGI Server"]
+    Runtime["Worker Runtime"]
     SPA["Compiled React SPA"]
     API["/api Backend Routes"]
-    Volume[("Persistent /var/data Volume")]
+    Volume[("Cloudflare D1")]
     Providers["OAuth and AI Providers"]
 
-    GitHub --> Render
-    Render --> Build
+    GitHub --> Worker
+    Worker --> Build
     Build --> SPA
-    Render --> Runtime
-    Runtime --> Uvicorn
-    Uvicorn --> SPA
-    Uvicorn --> API
+    Worker --> Runtime
+    Runtime --> SPA
+    Runtime --> API
     API --> Volume
     API --> Providers
 ```

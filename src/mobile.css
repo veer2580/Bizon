@@ -1,0 +1,197 @@
+/* Final responsive layer. Every rule is phone-only so desktop remains unchanged. */
+@media screen and (max-width: 720px) {
+  html body #root main.signup-page,
+  html body #root main.login-page,
+  html body #root main.verify-email-page {
+    width: 100% !important;
+    min-height: 100dvh !important;
+    height: auto !important;
+    display: block !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    background: #2b1a14 url('/assets/byizon-auth-background-clean.png') center / cover fixed no-repeat !important;
+  }
+
+  html body #root main.signup-page > .signup-brand-panel,
+  html body #root main.login-page > .login-brand-panel,
+  html body #root main.verify-email-page > .signup-brand-panel {
+    width: 100% !important;
+    min-height: 112px !important;
+    height: 112px !important;
+    padding: 24px 20px !important;
+    overflow: hidden !important;
+  }
+
+  html body #root main.signup-page .signup-brand-content,
+  html body #root main.login-page .signup-brand-content,
+  html body #root main.verify-email-page .signup-brand-content {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  html body #root main.signup-page .signup-logo,
+  html body #root main.login-page .signup-logo,
+  html body #root main.verify-email-page .signup-logo {
+    margin: 0 !important;
+    font-size: 32px !important;
+    line-height: 1 !important;
+  }
+
+  html body #root main.signup-page .signup-logo span,
+  html body #root main.login-page .signup-logo span,
+  html body #root main.verify-email-page .signup-logo span {
+    margin-top: 7px !important;
+    font-size: 9px !important;
+  }
+
+  html body #root main.signup-page .signup-brand-copy,
+  html body #root main.signup-page .signup-feature-list,
+  html body #root main.signup-page .signup-security-card,
+  html body #root main.signup-page .signup-brand-copyright,
+  html body #root main.login-page .signup-brand-copy,
+  html body #root main.login-page .signup-feature-list,
+  html body #root main.login-page .signup-security-card,
+  html body #root main.login-page .login-footer-strip,
+  html body #root main.verify-email-page .signup-brand-copy,
+  html body #root main.verify-email-page .signup-feature-list,
+  html body #root main.verify-email-page .signup-security-card {
+    display: none !important;
+  }
+
+  html body #root main.signup-page > .signup-form-panel,
+  html body #root main.login-page > .signup-form-panel,
+  html body #root main.verify-email-page > .signup-form-panel {
+    width: 100% !important;
+    min-height: calc(100dvh - 112px) !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 12px !important;
+    align-items: flex-start !important;
+    background: rgba(28, 16, 12, .68) !important;
+  }
+
+  html body #root main.signup-page .signup-card,
+  html body #root main.login-page .login-card,
+  html body #root main.verify-email-page .verify-email-card {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 26px 18px !important;
+    border-radius: 8px !important;
+    overflow: visible !important;
+  }
+
+  html body #root main.signup-page .signup-two-col,
+  html body #root main.signup-page .signup-phone-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  html body #root main.signup-page .signup-phone-row select,
+  html body #root main.signup-page .signup-phone-row .signup-input-wrap {
+    width: 100% !important;
+  }
+
+  html body #root main.signup-page .signup-card-title,
+  html body #root main.login-page .login-card-title,
+  html body #root main.verify-email-page .signup-card-title {
+    margin-top: 12px !important;
+    margin-bottom: 24px !important;
+  }
+
+  html body #root main.signup-page .signup-card-title h2,
+  html body #root main.login-page .login-card-title h2,
+  html body #root main.verify-email-page .signup-card-title h2 {
+    font-size: 30px !important;
+    line-height: 1.12 !important;
+  }
+
+  html body #root main.signup-page .signup-input-wrap,
+  html body #root main.signup-page .signup-phone-row select,
+  html body #root main.signup-page .signup-primary,
+  html body #root main.signup-page .signup-social,
+  html body #root main.login-page .signup-input-wrap,
+  html body #root main.login-page .signup-primary,
+  html body #root main.login-page .signup-social {
+    min-height: 50px !important;
+  }
+
+  html body #root .onboarding-page {
+    display: block !important;
+    width: 100% !important;
+    min-height: 100dvh !important;
+    overflow-x: hidden !important;
+  }
+
+  html body #root .onboarding-page .onboarding-rail {
+    min-height: 0 !important;
+    padding: 20px 16px 14px !important;
+  }
+
+  html body #root .onboarding-page .onboarding-rail-heading,
+  html body #root .onboarding-page .onboarding-security-card {
+    display: none !important;
+  }
+
+  html body #root .onboarding-page .onboarding-steps {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    margin: 12px 0 0 !important;
+  }
+
+  html body #root .onboarding-page .onboarding-steps li > div,
+  html body #root .onboarding-page .onboarding-steps strong,
+  html body #root .onboarding-page .onboarding-steps small {
+    display: none !important;
+  }
+
+  html body #root .onboarding-page .onboarding-steps span {
+    width: 100% !important;
+    height: 5px !important;
+    font-size: 0 !important;
+    border-radius: 999px !important;
+  }
+
+  html body #root .onboarding-page .onboarding-card-shell {
+    width: 100% !important;
+    padding: 12px !important;
+  }
+
+  html body #root .onboarding-page .onboarding-card {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 24px 16px !important;
+    border-radius: 8px !important;
+  }
+
+  html body #root .onboarding-page .onboarding-title h2,
+  html body #root .onboarding-page .team-hero h2 {
+    font-size: 28px !important;
+    line-height: 1.15 !important;
+  }
+
+  html body #root .onboarding-page .onboarding-grid,
+  html body #root .onboarding-page .team-grid,
+  html body #root .onboarding-page .role-grid,
+  html body #root .onboarding-page .data-source-grid,
+  html body #root .onboarding-page .ai-preferences-grid,
+  html body #root .onboarding-page .complete-shortcuts {
+    grid-template-columns: 1fr !important;
+  }
+
+  html body #root .onboarding-page .onboarding-actions {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  html body #root .onboarding-page .onboarding-actions button,
+  html body #root .onboarding-page .onboarding-continue,
+  html body #root .onboarding-page .complete-dashboard {
+    width: 100% !important;
+    min-height: 48px !important;
+  }
+}

@@ -9980,279 +9980,11 @@ body {
 }
 
 /* Reference-matched Byizon AI rail used by Home and operational pages. */
-.assistant-status-rail {
-  min-width: 250px;
-  min-height: min(720px, calc(100vh - 96px));
-  display: flex;
-  flex-direction: column;
-  padding: 18px 15px 16px;
-  overflow: hidden;
-  border: 1px solid rgba(72, 116, 219, 0.28) !important;
-  border-radius: 0 !important;
-  background:
-    radial-gradient(circle at 50% 28%, rgba(38, 106, 255, 0.28), transparent 31%),
-    linear-gradient(180deg, #061d43 0%, #061831 58%, #05132a 100%) !important;
-  color: #f4f7ff !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 18px 55px rgba(1, 8, 24, 0.36) !important;
-}
-
-html.byizon-light-mode body .assistant-status-rail,
-html.byizon-dark-mode body .assistant-status-rail {
-  background:
-    radial-gradient(circle at 50% 28%, rgba(38, 106, 255, 0.28), transparent 31%),
-    linear-gradient(180deg, #061d43 0%, #061831 58%, #05132a 100%) !important;
-  border-color: rgba(72, 116, 219, 0.28) !important;
-  color: #f4f7ff !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 18px 55px rgba(1, 8, 24, 0.36) !important;
-}
-
-.assistant-status-rail *,
-html.byizon-light-mode .assistant-status-rail *,
-html.byizon-dark-mode .assistant-status-rail * {
-  color: inherit !important;
-}
-
-.assistant-status-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.assistant-status-head > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.assistant-status-head > span svg {
-  color: #7ca4ff !important;
-}
-
-.assistant-status-head button {
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  border: 0 !important;
-  background: transparent !important;
-  color: #7186ad !important;
-}
-
-.assistant-systems-pill {
-  width: fit-content;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 18px auto 0;
-  padding: 5px 9px;
-  border: 1px solid rgba(45, 212, 191, 0.18);
-  border-radius: 999px;
-  background: rgba(16, 185, 129, 0.1);
-  color: #62d7af !important;
-  font-size: 9px;
-  font-weight: 700;
-}
-
-.assistant-systems-pill i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #32d89c;
-  box-shadow: 0 0 9px #32d89c;
-}
-
-.assistant-status-orb {
-  position: relative;
-  width: 86px;
-  height: 86px;
-  flex: 0 0 auto;
-  display: grid;
-  place-items: center;
-  margin: 52px auto 0;
-  border: 2px solid rgba(111, 174, 255, 0.9);
-  border-radius: 50%;
-  background: radial-gradient(circle, #8868ff 0 20%, #4d4ce0 39%, #154a9c 68%, #0b2b68 100%);
-  color: #fff !important;
-  box-shadow:
-    0 0 16px #4d8cff,
-    0 0 36px rgba(62, 119, 255, 0.72),
-    0 0 70px rgba(33, 96, 220, 0.35),
-    inset 0 0 19px rgba(255, 255, 255, 0.28);
-  animation: assistant-orb-pulse 3s ease-in-out infinite;
-}
-
-.assistant-status-orb::before,
-.assistant-status-orb::after {
-  content: "";
-  position: absolute;
-  inset: -15px;
-  border: 1px solid rgba(80, 135, 255, 0.17);
-  border-radius: 50%;
-}
-
-.assistant-status-orb::after {
-  inset: -29px;
-  opacity: 0.55;
-}
-
-.assistant-status-orb.is-working {
-  animation-duration: 1.25s;
-}
-
-@keyframes assistant-orb-pulse {
-  50% {
-    transform: scale(1.045);
-    box-shadow:
-      0 0 22px #5e97ff,
-      0 0 48px rgba(74, 125, 255, 0.8),
-      0 0 80px rgba(36, 97, 225, 0.42),
-      inset 0 0 22px rgba(255, 255, 255, 0.34);
-  }
-}
-
-.assistant-status-copy {
-  margin-top: 39px;
-  text-align: center;
-}
-
-.assistant-status-copy h2 {
-  margin: 0;
-  color: #f4f7ff !important;
-  font-size: 14px !important;
-  font-weight: 750;
-}
-
-.assistant-status-copy p {
-  max-width: 210px;
-  margin: 8px auto 0;
-  color: #9badca !important;
-  font-size: 10px !important;
-  line-height: 1.55;
-}
-
-.assistant-operation-steps {
-  display: grid;
-  gap: 7px;
-  margin-top: 20px;
-  padding: 11px;
-  border: 1px solid rgba(112, 149, 219, 0.16);
-  border-radius: 10px;
-  background: rgba(4, 13, 31, 0.4);
-}
-
-.assistant-operation-steps span {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  color: #9eb0cc !important;
-  font-size: 9px;
-}
-
-.assistant-operation-steps span.complete {
-  color: #60d7af !important;
-}
-
-.assistant-operation-steps span.running {
-  color: #9db8ff !important;
-}
-
-.assistant-service-list {
-  display: grid;
-  gap: 5px;
-  margin-top: 46px;
-}
-
-.assistant-service-list a {
-  min-height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 0 4px;
-  border-radius: 7px;
-  color: #b7c5dc !important;
-  font-size: 10px !important;
-  text-decoration: none;
-}
-
-.assistant-service-list a:hover {
-  background: rgba(88, 125, 203, 0.12) !important;
-}
-
-.assistant-service-list a > span,
-.assistant-service-list a small {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.assistant-service-list a small {
-  color: #57d3a5 !important;
-  font-size: 8.5px !important;
-}
-
-.assistant-memory-card {
-  margin-top: auto;
-  padding: 13px;
-  border: 1px solid rgba(91, 126, 204, 0.22) !important;
-  border-radius: 10px;
-  background: rgba(31, 65, 137, 0.18) !important;
-}
-
-.assistant-memory-card > div:first-child {
-  display: flex;
-  justify-content: space-between;
-  font-size: 10px;
-}
-
-.assistant-memory-track {
-  height: 4px;
-  margin: 9px 0;
-  overflow: hidden;
-  border-radius: 99px;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.assistant-memory-track > i {
-  width: 100%;
-  height: 100%;
-  display: block;
-  background: linear-gradient(90deg, #507aff, #a067ff);
-  box-shadow: 0 0 8px #785fff;
-}
-
-.assistant-memory-card small {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #7186aa !important;
-  font-size: 8px;
-}
-
-.assistant-memory-card small i {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #2fd79b;
-  box-shadow: 0 0 7px #2fd79b;
-}
 
 /* Calendar: keep the task form and add the matching AI rail at far right. */
 .calendar-layout {
   grid-template-columns: minmax(620px, 1fr) minmax(330px, 0.46fr) !important;
   align-items: start;
-}
-
-.calendar-assistant-rail {
-  position: sticky;
-  top: 24px;
-  min-height: 730px;
 }
 
 html.byizon-light-mode .calendar-grid article {
@@ -10285,24 +10017,6 @@ html.byizon-light-mode .calendar-toolbar button {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   white-space: nowrap;
-}
-
-html.byizon-light-mode body .assistant-service-list {
-  background: transparent !important;
-  border-color: transparent !important;
-  color: #b7c5dc !important;
-  box-shadow: none !important;
-}
-
-html.byizon-light-mode body .assistant-memory-card {
-  background: rgba(31, 65, 137, 0.18) !important;
-  border-color: rgba(91, 126, 204, 0.22) !important;
-  color: #f4f7ff !important;
-  box-shadow: none !important;
-}
-
-html.byizon-light-mode body .assistant-memory-card :is(span, strong, small) {
-  color: inherit !important;
 }
 
 html.byizon-dark-mode body .calendar-grid article {
@@ -10351,53 +10065,6 @@ html.byizon-dark-mode body .byizon-shell .home-composer textarea {
   transition: grid-template-columns 220ms ease;
 }
 
-.byizon-shell .ai-os-workspace.rail-collapsed {
-  grid-template-columns: minmax(0, 1fr) 56px !important;
-}
-
-.assistant-status-rail {
-  transition: min-width 220ms ease, width 220ms ease, padding 220ms ease;
-}
-
-html.byizon-light-mode body .assistant-status-rail.is-collapsed,
-html.byizon-dark-mode body .assistant-status-rail.is-collapsed,
-.assistant-status-rail.is-collapsed {
-  width: 56px;
-  min-width: 56px;
-  min-height: calc(100vh - 62px);
-  align-items: center;
-  padding: 14px 8px;
-  background:
-    radial-gradient(circle at 50% 12%, rgba(38, 106, 255, 0.28), transparent 28%),
-    linear-gradient(180deg, #061d43 0%, #061831 58%, #05132a 100%) !important;
-}
-
-.assistant-rail-expand {
-  width: 38px;
-  min-height: 74px;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  padding: 10px 4px;
-  border: 1px solid rgba(124, 164, 255, 0.34) !important;
-  border-radius: 12px !important;
-  background: rgba(39, 92, 190, 0.2) !important;
-  color: #f4f7ff !important;
-  cursor: pointer;
-}
-
-.assistant-rail-expand:hover {
-  background: rgba(67, 117, 220, 0.34) !important;
-}
-
-.assistant-rail-expand span {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
 .byizon-shell .byizon-greeting-subtitle {
   font-size: 16px !important;
 }
@@ -10412,33 +10079,15 @@ html.byizon-dark-mode body .assistant-status-rail.is-collapsed,
   font-size: 12px !important;
 }
 
-.assistant-service-list a {
-  font-size: 11px !important;
-}
-
-.assistant-status-copy p {
-  font-size: 11px !important;
-}
-
 @media (max-width: 1550px) {
   .calendar-layout {
     grid-template-columns: minmax(560px, 1fr) minmax(300px, 0.48fr) !important;
-  }
-
-  .calendar-assistant-rail {
-    position: static;
-    grid-column: 1 / -1;
-    min-height: 620px;
   }
 }
 
 @media (max-width: 980px) {
   .calendar-layout {
     grid-template-columns: 1fr !important;
-  }
-
-  .calendar-assistant-rail {
-    grid-column: auto;
   }
 }
 
@@ -10460,20 +10109,6 @@ html.byizon-dark-mode body .assistant-status-rail.is-collapsed,
   width: 38px;
   height: 38px;
   font-size: 13px !important;
-}
-
-html.byizon-light-mode body .assistant-rail-expand,
-html.byizon-dark-mode body .assistant-rail-expand {
-  border-color: rgba(129, 174, 255, 0.62) !important;
-  background: linear-gradient(180deg, #184fa9, #0c2f70) !important;
-  color: #ffffff !important;
-  box-shadow: 0 9px 24px rgba(2, 20, 58, 0.42) !important;
-}
-
-html.byizon-light-mode body .assistant-rail-expand *,
-html.byizon-dark-mode body .assistant-rail-expand * {
-  color: #ffffff !important;
-  stroke: currentColor;
 }
 
 html.byizon-dark-mode body :is(
@@ -12555,8 +12190,7 @@ html.byizon-dark-mode body #root .upload-zone {
 
 .home-chat-main .page-header,
 .chat-shell,
-.chat-history-panel,
-.assistant-status-rail {
+.chat-history-panel {
   border-color: var(--premium-border) !important;
   box-shadow: var(--premium-shadow-soft) !important;
 }

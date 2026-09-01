@@ -378,3 +378,101 @@ h1 span,h2 span { color: var(--orange); }
   color: var(--blue);
 }
 
+@media (max-width: 600px) {
+  .detail-visual {
+    min-height: 0;
+    padding: 14px;
+  }
+
+  .visual-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .workflow-process-visual {
+    min-height: 0;
+    padding: 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    overflow: visible;
+  }
+
+  .flow-node {
+    width: 100%;
+    min-width: 0;
+    flex: 0 0 auto;
+  }
+
+  .flow-connector {
+    width: 4px;
+    height: 18px;
+    min-height: 18px;
+    flex: 0 0 18px;
+    align-self: center;
+  }
+
+  .connector-line,
+  .connector-line.animated {
+    width: 100%;
+    height: 100%;
+    animation: none;
+  }
+
+  .analytics-chart-container {
+    min-height: 190px;
+    padding: 16px 12px;
+    gap: 10px;
+  }
+
+  .chart-y-axis {
+    padding-right: 8px;
+  }
+
+  .bar-pair {
+    gap: 4px;
+  }
+
+  .sales-funnel-container {
+    padding: 16px 12px;
+  }
+
+  .funnel-stage {
+    gap: 8px;
+  }
+
+  .stage-name {
+    width: 72px;
+    flex: 0 0 72px;
+    font-size: .7rem;
+  }
+
+  .stage-shape {
+    min-width: 0;
+    max-width: calc(100% - 80px);
+    padding: 0 8px;
+  }
+
+  .stage-value {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .enterprise-node-network {
+    min-height: 0;
+    padding: 14px;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .network-satellites {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .satellite-node {
+    min-width: 0;
+    padding: 9px 6px;
+  }
+}

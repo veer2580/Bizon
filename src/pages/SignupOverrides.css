@@ -231,12 +231,42 @@ body:has(main.signup-page:not(.login-page):not(.verify-email-page))::-webkit-scr
   }
 
   html body #root main.signup-page:not(.login-page):not(.verify-email-page) .signup-brand-panel {
-    min-height: 620px !important;
+    min-height: 112px !important;
+    height: 112px !important;
+    padding: 24px 20px !important;
+    overflow: hidden !important;
+  }
+
+  html body #root main.signup-page:not(.login-page):not(.verify-email-page) .signup-brand-content {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    height: 100% !important;
+  }
+
+  html body #root main.signup-page:not(.login-page):not(.verify-email-page) .signup-logo {
+    margin: 0 !important;
+    font-size: 32px !important;
+  }
+
+  html body #root main.signup-page:not(.login-page):not(.verify-email-page) .signup-logo span {
+    margin-top: 7px !important;
+    font-size: 9px !important;
+  }
+
+  html body #root main.signup-page:not(.login-page):not(.verify-email-page) .signup-brand-copy,
+  html body #root main.signup-page:not(.login-page):not(.verify-email-page) .signup-feature-list,
+  html body #root main.signup-page:not(.login-page):not(.verify-email-page) .signup-security-card,
+  html body #root main.signup-page:not(.login-page):not(.verify-email-page) .signup-brand-copyright {
+    display: none !important;
   }
 
   html body #root main.signup-page:not(.login-page):not(.verify-email-page) .signup-form-panel {
     min-height: auto !important;
-    padding: 18px !important;
+    margin: 0 !important;
+    padding: 12px !important;
+    align-items: flex-start !important;
+    transform: none !important;
   }
 
   html body #root main.signup-page:not(.login-page):not(.verify-email-page) .signup-card {

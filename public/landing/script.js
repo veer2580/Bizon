@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize all interactive modules safely
   initHeaderScroll();
+  initMobileNavigation();
+  initUnifiedMobileNavigation();
   initScrollReveal();
   initCountUpAnimations();
   initAccordion();
@@ -25,6 +27,71 @@ document.addEventListener('DOMContentLoaded', () => {
   initPricingPage();
   initNewsPage();
 });
+
+function initMobileNavigation() {
+  const toggle = document.getElementById('mobileMenuToggle');
+  const menu = document.getElementById('navMenu');
+  if (!toggle || !menu) return;
+
+  const closeMenu = () => {
+    menu.classList.remove('mobile-open');
+    toggle.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  toggle.setAttribute('aria-controls', 'navMenu');
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.addEventListener('click', () => {
+    const open = menu.classList.toggle('mobile-open');
+    toggle.classList.toggle('active', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) closeMenu();
+  });
+}
+
+function initUnifiedMobileNavigation() {
+  document.querySelectorAll('body > header:has(.unified-nav)').forEach((header, index) => {
+    const menu = header.querySelector('.unified-nav');
+    if (!menu || header.querySelector('.unified-mobile-toggle')) return;
+
+    const menuId = menu.id || `unifiedNavMenu${index + 1}`;
+    menu.id = menuId;
+
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'unified-mobile-toggle';
+    toggle.setAttribute('aria-label', 'Toggle Menu');
+    toggle.setAttribute('aria-controls', menuId);
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.innerHTML = '<span></span><span></span><span></span>';
+    header.appendChild(toggle);
+
+    const closeMenu = () => {
+      menu.classList.remove('mobile-open');
+      menu.querySelectorAll('.site-nav-dropdown.mobile-active').forEach((dropdown) => {
+        dropdown.classList.remove('mobile-active');
+        dropdown.querySelector(':scope > button')?.setAttribute('aria-expanded', 'false');
+      });
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+    };
+
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('mobile-open');
+      toggle.classList.toggle('active', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 680) closeMenu();
+    });
+  });
+}
 
 function initActiveNavigation() {
   const page = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
@@ -520,21 +587,26 @@ function initDropdownClick() {
     const menu = dropdown.querySelector('.site-nav-menu');
     if (!btn || !menu) return;
 
+    btn.setAttribute('aria-expanded', 'false');
+
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       // Close other dropdowns
       document.querySelectorAll('.site-nav-dropdown').forEach(other => {
         if (other !== dropdown) {
           other.classList.remove('mobile-active');
+          other.querySelector(':scope > button')?.setAttribute('aria-expanded', 'false');
         }
       });
-      dropdown.classList.toggle('mobile-active');
+      const open = dropdown.classList.toggle('mobile-active');
+      btn.setAttribute('aria-expanded', String(open));
     });
   });
 
   document.addEventListener('click', () => {
     dropdowns.forEach(dropdown => {
       dropdown.classList.remove('mobile-active');
+      dropdown.querySelector(':scope > button')?.setAttribute('aria-expanded', 'false');
     });
   });
 }
@@ -955,7 +1027,7 @@ function initPlatformPage() {
       e.preventDefault();
       const input = tryForm.querySelector('input');
       if (input && input.value) {
-        window.location.href = `https://byizon-ai-analytics.onrender.com/signup?prompt=${encodeURIComponent(input.value)}`;
+        window.parent.location.href = `/signup?prompt=${encodeURIComponent(input.value)}`;
       }
     });
   }

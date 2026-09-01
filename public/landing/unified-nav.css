@@ -47,6 +47,10 @@ body {
   overflow-x: hidden;
 }
 
+.unified-mobile-toggle {
+  display: none;
+}
+
 /* ==========================================================================
    UNIFIED HEADER NAVIGATION
    ========================================================================== */
@@ -307,6 +311,162 @@ body > header:has(.unified-nav) .start-btn span {
     min-width: 98px !important;
     min-height: 40px !important;
     padding: 0 17px !important;
+  }
+}
+
+/* Shared static-page header and footer at phone width only. */
+@media (max-width: 680px) {
+  body > header:has(.unified-nav) {
+    min-height: 72px !important;
+    padding: 12px !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+  }
+
+  body > header:has(.unified-nav) .brand-wordmark-image {
+    width: 106px !important;
+  }
+
+  body > header:has(.unified-nav) .unified-nav,
+  body > header:has(.unified-nav) .site-nav {
+    display: none !important;
+  }
+
+  body > header:has(.unified-nav) .unified-mobile-toggle {
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.45);
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  body > header:has(.unified-nav) .unified-mobile-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform .18s ease, opacity .18s ease;
+  }
+
+  body > header:has(.unified-nav) .unified-mobile-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  body > header:has(.unified-nav) .unified-mobile-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  body > header:has(.unified-nav) .unified-mobile-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  body > header:has(.unified-nav) .unified-nav.mobile-open,
+  body > header:has(.unified-nav) .site-nav.mobile-open {
+    order: 4;
+    flex: 0 0 100%;
+    width: 100%;
+    margin: 2px 0 0;
+    padding: 8px;
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px !important;
+    overflow: visible;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 8px;
+    background: #173f69;
+    box-shadow: 0 18px 42px rgba(4,18,36,.24);
+  }
+
+  body > header:has(.unified-nav) .unified-nav.mobile-open > a,
+  body > header:has(.unified-nav) .unified-nav.mobile-open > .site-nav-dropdown,
+  body > header:has(.unified-nav) .site-nav.mobile-open > a,
+  body > header:has(.unified-nav) .site-nav.mobile-open > .site-nav-dropdown {
+    width: 100%;
+    min-height: 42px;
+    padding: 0 !important;
+  }
+
+  body > header:has(.unified-nav) .unified-nav.mobile-open > a,
+  body > header:has(.unified-nav) .unified-nav.mobile-open > .site-nav-dropdown > button {
+    min-height: 42px;
+    padding: 10px !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  body > header:has(.unified-nav) .site-nav-dropdown.mobile-active {
+    min-height: auto;
+  }
+
+  body > header:has(.unified-nav) .site-nav-dropdown.mobile-active > .site-nav-menu {
+    position: static;
+    display: grid;
+    width: 100%;
+    margin: 0 0 6px;
+    padding: 5px;
+    gap: 2px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 6px;
+    background: rgba(7,31,57,.34);
+    box-shadow: none;
+  }
+
+  body > header:has(.unified-nav) .site-nav-dropdown.mobile-active > .site-nav-menu a {
+    min-height: 38px;
+    padding: 9px 12px;
+    display: flex;
+    align-items: center;
+    color: rgba(255,255,255,.9);
+    white-space: normal;
+  }
+
+  body > header:has(.unified-nav) .site-nav-dropdown.mobile-active > .site-nav-menu a:hover,
+  body > header:has(.unified-nav) .site-nav-dropdown.mobile-active > .site-nav-menu a:focus-visible {
+    color: #fff;
+    background: rgba(255,255,255,.1);
+  }
+
+  body > header:has(.unified-nav) [class$="-actions"],
+  body > header:has(.unified-nav) [class*="-actions "] {
+    margin-left: auto !important;
+    gap: 6px !important;
+  }
+
+  body > header:has(.unified-nav) .login-btn {
+    display: inline-flex !important;
+    min-height: 36px !important;
+    align-items: center !important;
+    padding: 0 4px !important;
+    font-size: .78rem !important;
+  }
+
+  body > header:has(.unified-nav) .start-btn {
+    min-width: 72px !important;
+    min-height: 36px !important;
+    padding: 0 10px !important;
+    font-size: .78rem !important;
+  }
+
+  body > .site-footer .footer-columns-grid,
+  .footer-columns-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 

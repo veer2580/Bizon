@@ -561,7 +561,7 @@ def build_story():
             ["Environment", "Frontend", "Backend/API", "Data"],
             [
                 ["Local development", "http://127.0.0.1:5173", "http://127.0.0.1:8000", "Local backend/data directory"],
-                ["Render production", "Served by the same public service", "Same-origin /api routes", "Persistent /var/data volume"],
+                ["Cloudflare production", "Served by the Worker", "Same-origin /api routes", "Cloudflare D1"],
             ],
             [45 * mm, 72 * mm, 72 * mm, 76 * mm],
         )

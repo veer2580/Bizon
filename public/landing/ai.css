@@ -60,3 +60,50 @@ h1 span,h2 span { color: var(--orange); }
   .agent-grid,.governance-grid,.flow-steps { grid-template-columns: 1fr; }
   .flow-band { margin-left: 24px; margin-right: 24px; }
 }
+
+@media (max-width: 600px) {
+  .ai-core-visual {
+    min-height: 400px;
+  }
+
+  .ai-core-visual::before {
+    inset: 20px;
+    background-size: 32px 30px;
+  }
+
+  .core-orbit {
+    left: 12%;
+    right: 12%;
+    top: 43%;
+    height: 82px;
+  }
+
+  .core-node {
+    width: 120px;
+    height: 120px;
+    animation: none;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 12px rgba(96,165,250,.12), 0 0 30px rgba(96,165,250,.45);
+  }
+
+  .core-node strong {
+    font-size: 1rem;
+  }
+
+  .core-node small {
+    font-size: .62rem;
+  }
+
+  .mini-node {
+    width: calc(50% - 24px);
+    min-height: 64px;
+    padding: 8px;
+    font-size: .72rem;
+    line-height: 1.35;
+  }
+
+  .m1 { left: 12px; top: 46px; }
+  .m2 { right: 12px; top: 46px; }
+  .m3 { left: 12px; bottom: 46px; }
+  .m4 { right: 12px; bottom: 46px; }
+}
